@@ -7,17 +7,17 @@ public class BOJ_2738 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken()); //토크나이저로 분리
 
-        int[][] arr = new int[n][m];
-        for (int i = 0; i < n; i++) {
+        int[][] arr = new int[n][m]; //2차원 배열 선언
+        for(int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < m; j++) {
                 arr[i][j] = Integer.parseInt(st.nextToken());
             }
         }
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < n; i++) {
+        for(int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < m; j++) {
                 sb.append(arr[i][j] + Integer.parseInt(st.nextToken()) + " ");
@@ -25,8 +25,6 @@ public class BOJ_2738 {
             sb.append("\n");
         }
         System.out.println(sb);
-
-
     }
 
 }
