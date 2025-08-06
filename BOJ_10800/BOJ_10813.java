@@ -17,7 +17,6 @@ public class BOJ_10813 {
         for(int i = 1; i <= basket_num; i++) {
             arr[i] = i;
         }
-
         // 공 바꾸기
         for(int i = 0; i < testcase_num; i++) {
             st = new StringTokenizer(br.readLine());
