@@ -1,12 +1,14 @@
+//BOJ_5567_결혼식
+
 package BOJ_5500;
 
-import java.io.*;
-import java.util.*;
+import java.io. *;
+import java.util. *;
 
 public class BOJ_5567 {
-public static void main(String[] args) throws IOException {
+    public static void main(String[] args)throws IOException {
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System. in));
         int n = Integer.parseInt(br.readLine()); // 총 사람 수
         int m = Integer.parseInt(br.readLine()); // 친구 관계 수
 
@@ -15,14 +17,17 @@ public static void main(String[] args) throws IOException {
             graph.add(new ArrayList<>());
         }
 
-    
         for (int i = 0; i < m; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
 
-            graph.get(a).add(b);
-            graph.get(b).add(a);
+            graph
+                .get(a)
+                .add(b);
+            graph
+                .get(b)
+                .add(a);
         }
 
         // BFS 시작
@@ -38,18 +43,22 @@ public static void main(String[] args) throws IOException {
             int person = current[0];
             int depth = current[1];
 
-            if (depth >= 2) continue;
-
+            if (depth >= 2) 
+                continue;
+            
             for (int friend : graph.get(person)) {
                 if (!visited[friend]) {
                     visited[friend] = true;
-                    queue.offer(new int[]{friend, depth + 1});
+                    queue.offer(new int[]{
+                        friend, depth + 1
+                    });
                     count++; // 초대 인원 추가
                 }
             }
         }
 
-        System.out.println(count);
+        System
+            .out
+            .println(count);
     }
 }
-
