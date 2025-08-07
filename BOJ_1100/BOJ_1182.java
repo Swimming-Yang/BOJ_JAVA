@@ -1,14 +1,16 @@
 package BOJ_1100;
 
-import java.io.*;
-import java.util.*;
+import java.io. *;
+import java.util. *;
 
 public class BOJ_1182 {
-    static int N, S, count;
+    static int N,
+    S,
+    count;
     static int[] arr;
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    public static void main(String[] args)throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System. in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         N = Integer.parseInt(st.nextToken());
@@ -22,9 +24,12 @@ public class BOJ_1182 {
 
         dfs(0, 0);
 
-        if (S == 0) count--;
-
-        System.out.println(count);
+        if (S == 0) 
+            count--;
+        
+        System
+            .out
+            .println(count);
     }
 
     static void dfs(int index, int sum) {
@@ -42,4 +47,3 @@ public class BOJ_1182 {
         dfs(index + 1, sum);
     }
 }
-
