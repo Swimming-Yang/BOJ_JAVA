@@ -15,22 +15,22 @@ public class Permutation {
     }
 
     //순열
-    static void permutation(int n, int r) {
-        if(stack.size() == r) { //
-            for(int i : stack) {
-                System.out.print(i + " ");
+    static void permutation(int n, int r) { //3개 중 2개
+        if(stack.size() == r) { //선택을 이미 마쳤다면
+            for(int i : stack) { //스택을 순회해서
+                System.out.print(i + " "); // 출력
             }
-            System.out.println();
+            System.out.println(); //줄바꿈
             return;
         }
 
-        for(int i = 0; i < n; i++) { //n -> 3 r -> 2 
-            if(!visited[i]) {
-                visited[i] = true;
-                stack.push(arr[i]);
-                permutation(n, r);
+        for(int i = 0; i < n; i++) { //n -> 3 r -> 2  
+            if(!visited[i]) { //방문체크
+                visited[i] = true; //방문체크
+                stack.push(arr[i]); //arr[i]를 스택에 푸시
+                permutation(n, r); //재귀
                 stack.pop();
-                visited[i] = false;
+                visited[i] = false; //초기화
 
             }
         }
