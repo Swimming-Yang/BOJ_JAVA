@@ -1,8 +1,8 @@
-package MST.Prim;
+package AlGO.MST.Prim;
 
 import java.util.Arrays;
 
-public class adjMat {
+public class dijkstra_adjMat {
     static final int N = 7;                              // 정점 수(0~6)
 
     public static void main(String[] args) {
@@ -55,7 +55,8 @@ public class adjMat {
             // 선택된 정점(minIdx)과 인접한 정점들에 대해 거리 갱신
             for (int v = 0; v < N; v++) {
                 // 간선 존재하고, 아직 MST에 없고, 더 짧은 간선을 찾았다면 갱신
-                if (adj[minIdx][v] != 0 && !visited[v] && adj[minIdx][v] < dist[v]) {
+                // 새롭게 찾은 간선 + 기준정점까지 온 값이 기존에 찾은 타겟정점까지의 값보다 작다면
+                if (adj[minIdx][v] != 0 && !visited[v] && adj[minIdx][v] + dist[minIdx] < dist[v]) {
                     dist[v] = adj[minIdx][v];            // v까지의 최소 간선 가중치 갱신
                     parent[v] = minIdx;                  // v는 minIdx로부터 연결되는 것이 더 좋음
                 }
