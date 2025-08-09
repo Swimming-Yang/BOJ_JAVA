@@ -1,5 +1,7 @@
-package AlGO.BackTracking;
-
-public class infoBackTracking {
-
-}
+/*
+ * BackTracking - 다시 추적
+ * 노드의 유망성을 판단한 뒤 유망하지 않다면 부모노드로 돌아가 다른 자식 노드를 찾는 방법
+ * 
+ * 
+ * 
+ */
