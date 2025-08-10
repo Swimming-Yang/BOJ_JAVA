@@ -6,9 +6,8 @@ import java.io.*;
 import java.util.*;
 
 public class BOJ_1068 {
-    static ArrayList<Integer>[] grpah; //그래프 선언
+
     static boolean visited[]; //방문 배열
-    static int delete;
     static List<Integer> tree[];
     static int cnt = 0;
     static int N;
@@ -18,7 +17,6 @@ public class BOJ_1068 {
         N = Integer.parseInt(br.readLine()); //노드의 개수
 
         visited = new boolean[N]; //방문기록 초기화
-
         tree = new ArrayList[N];
         for(int i = 0; i < N; i++){
             tree[i] = new ArrayList<>();

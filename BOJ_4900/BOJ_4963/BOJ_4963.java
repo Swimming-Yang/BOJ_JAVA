@@ -1,6 +1,6 @@
 //BOJ_4963_섬의 개수
 
-package BOJ_4900;
+package BOJ_4900.BOJ_4963;
 
 import java.io.*;
 import java.util.*;
