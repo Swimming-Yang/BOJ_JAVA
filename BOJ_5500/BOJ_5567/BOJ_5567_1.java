@@ -1,6 +1,6 @@
 //BOJ_5567_1 결혼식 연습
 
-package BOJ_5500;
+package BOJ_5500.BOJ_5567;
 
 import java.io.*;
 import java.util.*;
@@ -11,7 +11,6 @@ public class BOJ_5567_1 {
     static boolean []visited;
     static int [][] map;
 
-    static int dfs_count;
     static int friend_count;
 
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -37,20 +36,20 @@ public class BOJ_5567_1 {
         }
 
         friend_count = 0;
-        //이 상황에서 dfs로 어떻게 들어가지? 시작은 무조건 1이긴한거같은데 (1, 1)부터 시작하면 되나?
+        visited[1] = true;
 
         dfs(1, 0);//상근이 부터 시작
         System.out.println(friend_count);
     }
 
     public static void dfs(int person, int depth) {
-        visited[person] = true;
 
         if (depth >= 2) return;
 
         for(int next = 1; next <= friend; next++) {
             if(map[person][next] == 1 && !visited[next]) {
-                friend_count += 1;
+                visited[next] = true;
+                friend_count ++;
                 dfs(next, depth + 1);
             }
 

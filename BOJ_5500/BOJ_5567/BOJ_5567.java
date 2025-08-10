@@ -1,6 +1,6 @@
 //BOJ_5567_결혼식
 
-package BOJ_5500;
+package BOJ_5500.BOJ_5567;
 
 import java.io. *;
 import java.util. *;

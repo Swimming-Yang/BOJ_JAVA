@@ -1,6 +1,6 @@
 // BOJ_1325_효율적인 해킹
 
-package BOJ_1300;
+package BOJ_1300.BOJ_1325;
 
 import java.io.*;
 import java.util.*;
@@ -37,7 +37,10 @@ public class BOJ_1325 {
         // 모든 컴퓨터를 시작점으로 BFS 탐색
         for (int i = 1; i <= com_num; i++) {
             result[i] = bfs(i, graph, com_num);
-            max = Math.max(max, result[i]);
+            if (result[i] > max) {
+                max = result[i];
+    }
+
         }
 
         // 해킹 가능한 컴퓨터 수가 최대인 시작점 출력
