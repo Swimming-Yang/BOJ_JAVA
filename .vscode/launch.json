@@ -6,6 +6,27 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Subset",
+      "request": "launch",
+      "mainClass": "AlGO.Subset.Subset",
+      "projectName": "BOJ_JAVA_7d090aff"
+    },
+    {
+      "type": "java",
+      "name": "Combination",
+      "request": "launch",
+      "mainClass": "AlGO.Combination.Combination",
+      "projectName": "BOJ_JAVA_7d090aff"
+    },
+    {
+      "type": "java",
+      "name": "Permutation",
+      "request": "launch",
+      "mainClass": "AlGO.Permutation.Permutation",
+      "projectName": "BOJ_JAVA_7d090aff"
+    },
+    {
+      "type": "java",
       "name": "BOJ_1325_1",
       "request": "launch",
       "mainClass": "BOJ_1300.BOJ_1325.BOJ_1325_1",
