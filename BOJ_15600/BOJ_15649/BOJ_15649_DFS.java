@@ -5,15 +5,16 @@ import java.util.*;
 
 public class BOJ_15649_DFS {
 
+    public static int N;
+    public static int R;
     public static int[] arr;
     public static boolean[] visited;
     public static StringBuilder sb = new StringBuilder();
-    public static int N;
-    public static int R;
+    public static StringTokenizer st;
+    public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) throws IOException{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        st = new StringTokenizer(br.readLine());
 
         N = Integer.parseInt(st.nextToken());
         R = Integer.parseInt(st.nextToken());
@@ -23,27 +24,24 @@ public class BOJ_15649_DFS {
 
         dfs(0);
         System.out.println(sb);
-
-
     }
 
     public static void dfs(int depth) {
-        if (depth == R) {
-            for(int val : arr ) {
-                sb.append(val + " ");
+        if(depth == R) {
+            for(int num : arr) {
+                sb.append(num + " ");
             }
             sb.append('\n');
             return;
         }
-        
-        for (int i = 0; i < N; i++) {
+
+        for(int i = 0; i < N; i++) {
             if (!visited[i]) {
                 visited[i] = true;
                 arr[depth] = i + 1;
-                dfs(depth + 1);
-                visited[i] = false;
-
-            }
+            dfs(depth + 1);
+            visited[i] = false; 
+           }
         }
     }
 }

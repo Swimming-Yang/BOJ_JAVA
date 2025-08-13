@@ -6,6 +6,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "BOJ_15651",
+      "request": "launch",
+      "mainClass": "BOJ_15600.BOJ_15651",
+      "projectName": "BOJ_JAVA_24864bae"
+    },
+    {
+      "type": "java",
+      "name": "BOJ_15649_DFS",
+      "request": "launch",
+      "mainClass": "BOJ_15600.BOJ_15649.BOJ_15649_DFS",
+      "projectName": "BOJ_JAVA_24864bae"
+    },
+    {
+      "type": "java",
       "name": "BOJ_15649_DFS",
       "request": "launch",
       "mainClass": "BOJ_15600.BOJ_15649.BOJ_15649_DFS",
