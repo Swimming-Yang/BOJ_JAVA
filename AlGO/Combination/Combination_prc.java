@@ -4,7 +4,6 @@ import java.util.*;
 
 public class Combination_prc {
     static List<List<Integer>> result = new ArrayList<>();
-    static boolean[] visited;
     static List<Integer> current;
 
     public static void main(String[] args) {

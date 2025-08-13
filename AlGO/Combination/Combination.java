@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Combination {
     static List<List<Integer>> result = new ArrayList<>();
+    static List<Integer> current;
     
     // 조합 생성 함수
     // arr: 조합을 만들 원소들의 배열
@@ -32,7 +33,7 @@ public class Combination {
     
     public static void main(String[] args) {
         int[] arr = {1, 2, 3};
-        List<Integer> current = new ArrayList<>();
+        current = new ArrayList<>();
         
         System.out.println("조합연습");
         combination(arr, 0, current, 2);  // start=0부터 시작

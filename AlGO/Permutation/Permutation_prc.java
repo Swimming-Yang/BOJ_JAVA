@@ -42,10 +42,10 @@ public class Permutation_prc {
         permutation(arr, visited, current, 2);  //순열진행배열, 방문배열, 현재배열, 뽑을개수
 
         for(List<Integer> perm : result) {
-            System.out.println(perm);
+            for(int num : perm) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
         }
     }
-
-
-
 }

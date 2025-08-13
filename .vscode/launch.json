@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "SWEA_1974",
+      "request": "launch",
+      "mainClass": "SWEA_1900.SWEA_1974",
+      "projectName": "BOJ_JAVA_7d090aff"
+    },
+    {
+      "type": "java",
       "name": "subSet_prc",
       "request": "launch",
       "mainClass": "AlGO.Subset.subSet_prc",
