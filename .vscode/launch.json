@@ -6,6 +6,48 @@
   "configurations": [
     {
       "type": "java",
+      "name": "subSet_prc",
+      "request": "launch",
+      "mainClass": "AlGO.Subset.subSet_prc",
+      "projectName": "BOJ_JAVA_7d090aff"
+    },
+    {
+      "type": "java",
+      "name": "Combination_prc",
+      "request": "launch",
+      "mainClass": "AlGO.Combination.Combination_prc",
+      "projectName": "BOJ_JAVA_7d090aff"
+    },
+    {
+      "type": "java",
+      "name": "Permutation_prc",
+      "request": "launch",
+      "mainClass": "AlGO.Permutation.Permutation_prc",
+      "projectName": "BOJ_JAVA_7d090aff"
+    },
+    {
+      "type": "java",
+      "name": "SubsetGenerator",
+      "request": "launch",
+      "mainClass": "AlGO.Subset.SubsetGenerator",
+      "projectName": "BOJ_JAVA_7d090aff"
+    },
+    {
+      "type": "java",
+      "name": "ChessGame",
+      "request": "launch",
+      "mainClass": "ChessGame",
+      "projectName": "BOJ_JAVA_7d090aff"
+    },
+    {
+      "type": "java",
+      "name": "SubsetRecursiveDetailed",
+      "request": "launch",
+      "mainClass": "AlGO.Subset.SubsetRecursiveDetailed",
+      "projectName": "BOJ_JAVA_7d090aff"
+    },
+    {
+      "type": "java",
       "name": "Subset",
       "request": "launch",
       "mainClass": "AlGO.Subset.Subset",
