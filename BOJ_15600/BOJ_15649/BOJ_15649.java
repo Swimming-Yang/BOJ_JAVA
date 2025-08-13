@@ -1,5 +1,5 @@
 //BOJ_15649 N과M(1)
-package BOJ_15600;
+package BOJ_15600.BOJ_15649;
 
 import java.io.*;
 import java.util.*;

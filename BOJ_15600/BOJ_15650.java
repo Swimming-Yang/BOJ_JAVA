@@ -1,39 +1,50 @@
-//BOJ_15650_N과M;
-
 package BOJ_15600;
 
 import java.io.*;
 import java.util.*;
 
-
 public class BOJ_15650 {
-
-    static boolean[] visited;
-    static List<List<Integer>> result = new ArrayList<>();
-    static int[] arr;
+    
+    static List<List<Integer>> result;
     static List<Integer> current;
-
-    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static StringTokenizer st;
-
-    public static void main(String[] args) throws IOException{
-        
-        st = new StringTokenizer(br.readLine());
+    
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
         
         int N = Integer.parseInt(st.nextToken());
         int R = Integer.parseInt(st.nextToken());
+        
+        result = new ArrayList<>();
+        current = new ArrayList<>();
+        
+        int[] arr = new int[N];
+        for(int i = 0; i < N; i++) {
+            arr[i] = i + 1;
+        }
+        
+        combination(arr, 0, current, R);
 
-        //초기화
-        visited = new boolean[N];
-        Lis
-
-
-
+        for(List<Integer> list : result) {
+            for(int num : list) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+        }
     }
-
-
-    public static void permutation (){
-
+    
+    public static void combination(int[] arr, int start, List<Integer> current, int R) {
+        if(current.size() == R) {
+            result.add(new ArrayList<>(current));
+            return; 
+        }
+        
+        for(int i = start; i < arr.length; i++) {
+            current.add(arr[i]);
+            
+            combination(arr, i + 1, current, R);
+            
+            current.remove(current.size() - 1);
+        }
     }
-
 }
