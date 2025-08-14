@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Permutationc_prc_2",
+      "request": "launch",
+      "mainClass": "AlGO.Permutation.Permutationc_prc_2",
+      "projectName": "BOJ_JAVA_7d090aff"
+    },
+    {
+      "type": "java",
       "name": "BOJ_15651",
       "request": "launch",
       "mainClass": "BOJ_15600.BOJ_15651",
