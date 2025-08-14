@@ -6,6 +6,27 @@
   "configurations": [
     {
       "type": "java",
+      "name": "BOJ_11725",
+      "request": "launch",
+      "mainClass": "BOJ_11700.BOJ_11725",
+      "projectName": "BOJ_JAVA_7d090aff"
+    },
+    {
+      "type": "java",
+      "name": "BOJ_11724_1",
+      "request": "launch",
+      "mainClass": "BOJ_11700.BOJ_11724.BOJ_11724_1",
+      "projectName": "BOJ_JAVA_7d090aff"
+    },
+    {
+      "type": "java",
+      "name": "BOJ_11724",
+      "request": "launch",
+      "mainClass": "BOJ_11700.BOJ_11724.BOJ_11724",
+      "projectName": "BOJ_JAVA_7d090aff"
+    },
+    {
+      "type": "java",
       "name": "Permutationc_prc_2",
       "request": "launch",
       "mainClass": "AlGO.Permutation.Permutationc_prc_2",
