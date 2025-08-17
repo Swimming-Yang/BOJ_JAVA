@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "SWEA_1861",
+      "request": "launch",
+      "mainClass": "SWEA_1800.SWEA_1861",
+      "projectName": "BOJ_JAVA_24864bae"
+    },
+    {
+      "type": "java",
       "name": "BOJ_1110",
       "request": "launch",
       "mainClass": "BOJ_1100.BOJ_1110",

@@ -1,7 +1,9 @@
+package BOJ_27900;
+
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class BOJ_27924 {
 
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static StringTokenizer st;
@@ -10,6 +12,12 @@ public class Main {
     public static boolean[] leafNode;
 
     public static int thief, police1, police2;
+
+    /*
+     * 아무 리프노드중 하나가 경찰의거리보다 도둑의 거리가 가까우면 무조건 true임
+     * 
+     * 
+     */
 
     public static void main(String[] args) throws IOException{
         int Node = Integer.parseInt(br.readLine()); //노드의 개수
