@@ -86,9 +86,9 @@ public class SWEA_1861 {
             }
         }
         if(count > max_room) {
-            max_room = count;{
+            max_room = count;
             room_num = map[start_x][start_y];
-            }
+        
         } else if(count == max_room && room_num > map[start_x][start_y]){
             room_num = map[start_x][start_y];
         }
