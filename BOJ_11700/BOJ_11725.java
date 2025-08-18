@@ -37,7 +37,7 @@ public class BOJ_11725 {
         }
 
         bfs();
-        for(int i = 2; i < standard; i++) {
+        for(int i = 2; i <= standard; i++) {
             System.out.println(parent[i]);
         }
     }
