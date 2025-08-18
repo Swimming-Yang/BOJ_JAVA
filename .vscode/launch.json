@@ -6,6 +6,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "BOJ_1753",
+      "request": "launch",
+      "mainClass": "BOJ_1700.BOJ_1753",
+      "projectName": "BOJ_JAVA_24864bae"
+    },
+    {
+      "type": "java",
+      "name": "DFS_PowerSet",
+      "request": "launch",
+      "mainClass": "AlGO.완전탐색.DFS.DFS_PowerSet",
+      "projectName": "BOJ_JAVA_24864bae"
+    },
+    {
+      "type": "java",
       "name": "SWEA_1861",
       "request": "launch",
       "mainClass": "SWEA_1800.SWEA_1861",
