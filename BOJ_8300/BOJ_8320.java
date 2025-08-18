@@ -1,3 +1,4 @@
+package BOJ_8300;
 //BOJ_8320
 
 import java.io.*;

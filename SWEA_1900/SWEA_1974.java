@@ -1,5 +1,5 @@
 package SWEA_1900;
-
+//cspell:ignore SWEA
 import java.io.*;
 import java.util.*;
 

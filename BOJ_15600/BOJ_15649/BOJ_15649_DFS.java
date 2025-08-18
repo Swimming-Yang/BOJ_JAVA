@@ -5,10 +5,10 @@ import java.util.*;
 
 public class BOJ_15649_DFS {
 
-    public static int N;
-    public static int R;
-    public static int[] arr;
-    public static boolean[] visited;
+    public static int N;                //선택 배열범위
+    public static int R;                //선택할 개수
+    public static int[] current;            //현재 순열
+    public static boolean[] visited;    //방문 여부 배열
     public static StringBuilder sb = new StringBuilder();
     public static StringTokenizer st;
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -16,19 +16,19 @@ public class BOJ_15649_DFS {
     public static void main(String[] args) throws IOException{
         st = new StringTokenizer(br.readLine());
 
-        N = Integer.parseInt(st.nextToken());
-        R = Integer.parseInt(st.nextToken());
+        N = Integer.parseInt(st.nextToken());   //배열의 길이는?
+        R = Integer.parseInt(st.nextToken());   //몇개를 선택?
 
-        arr = new int[R];
-        visited = new boolean[N];
+        current = new int[R];                       //현재 배열 초기회
+        visited = new boolean[N];               //방문 배열 초기화
 
-        dfs(0);
+        dfs(0);                           //깊이 0부터 dfs 시작 
         System.out.println(sb);
     }
 
     public static void dfs(int depth) {
         if(depth == R) {
-            for(int num : arr) {
+            for(int num : current) {
                 sb.append(num + " ");
             }
             sb.append('\n');
@@ -38,7 +38,7 @@ public class BOJ_15649_DFS {
         for(int i = 0; i < N; i++) {
             if (!visited[i]) {
                 visited[i] = true;
-                arr[depth] = i + 1;
+                current[depth] = i + 1;
             dfs(depth + 1);
             visited[i] = false; 
            }
