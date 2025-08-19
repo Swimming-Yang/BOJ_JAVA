@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Prc {
+<<<<<<< Updated upstream
 
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static StringTokenizer st;
@@ -44,4 +45,8 @@ public class Prc {
         Arrays.fill(distance, INF);
     }
     
+=======
+    
+
+>>>>>>> Stashed changes
 }

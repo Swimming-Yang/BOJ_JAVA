@@ -6,10 +6,17 @@
   "configurations": [
     {
       "type": "java",
+<<<<<<< Updated upstream
       "name": "BOJ_1620",
       "request": "launch",
       "mainClass": "BOJ_1620.BOJ_1620",
       "projectName": "BOJ_JAVA_ce2a1b89"
+=======
+      "name": "SWEA_14510",
+      "request": "launch",
+      "mainClass": "SWEA_14500.SWEA_14510",
+      "projectName": "BOJ_JAVA_24864bae"
+>>>>>>> Stashed changes
     },
     {
       "type": "java",
