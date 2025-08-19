@@ -6,67 +6,42 @@ public class Prc {
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static StringTokenizer st;
 
-    public static ArrayList<Integer>[] graph;
-    public static boolean[] visited;
+    public static ArrayList<Node>[] graph;
     public static int[] distance;
+    public static final int INF = Integer.MAX_VALUE;
+
+    static class Node implements Comparable<Node> {
+        int end;
+        int weight;
+
+        Node(int end, int weight) {
+            this.end = end;
+            this.weight = weight;
+        }
+
+        @Override
+        public int compareTo(Node other) {
+            return Integer.compare(this.weight, other.weight);
+        }
+    }
 
     public static void main(String[] args) throws IOException{
-        st = new StringTokenizer(br.readLine());
-        int Node = Integer.parseInt(st.nextToken());
-        int Edge = Integer.parseInt(st.nextToken());
-
-        //그래프 초기화
-        graph = new ArrayList[Node + 1];
-        visited = new boolean[Node + 1];
-        distance = new int[Node + 1];
         
-        for(int i = 1; i <= Node; i++) {
+        st = new StringTokenizer(br.readLine());
+        int V = Integer.parseInt(st.nextToken());
+        int E = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+
+
+        //초기화 영역
+        graph = new ArrayList[V + 1];
+        distance = new int[V + 1];
+
+        for(int i = 1; i <= V; i++) {
             graph[i] = new ArrayList<>();
         }
 
-        for(int i = 0; i < Edge; i++) {
-            st = new StringTokenizer(br.readLine());
-            int start = Integer.parseInt(st.nextToken());
-            int end = Integer.parseInt(st.nextToken());
-
-            graph[start].add(end);
-            graph[end].add(start);       
-            }
-
-            st = new StringTokenizer(br.readLine());
-            int start_node = Integer.parseInt(st.nextToken());
-            int target_node = Integer.parseInt(st.nextToken());
-
-            int result = bfs(start_node, target_node);
-            System.out.println(result);
-            }
-
-            public static int bfs(int start_node, int target_node) {
-                Queue<Integer> q = new LinkedList<>();
-                q.offer(start_node);
-                visited[start_node] = true;
-                distance[start_node] = 0;
-
-                while(!q.isEmpty()) {
-                    int node = q.poll();
-
-                    if(node == target_node) {
-                        return distance[target_node];
-                    }
-
-                    for(int next : graph[node]) {
-                        if(!visited[next]) {
-                            visited[next] = true;
-                            distance[next] = distance[node] + 1;
-                            q.offer(next);
-                        }
-                    }
-                }
-
-                return -1;
-
-            }
-        
-
-
+        Arrays.fill(distance, INF);
+    }
+    
 }
