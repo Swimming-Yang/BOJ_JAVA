@@ -2,51 +2,33 @@ import java.io.*;
 import java.util.*;
 
 public class Prc {
-<<<<<<< Updated upstream
 
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static StringTokenizer st;
 
-    public static ArrayList<Node>[] graph;
-    public static int[] distance;
-    public static final int INF = Integer.MAX_VALUE;
-
-    static class Node implements Comparable<Node> {
-        int end;
-        int weight;
-
-        Node(int end, int weight) {
-            this.end = end;
-            this.weight = weight;
-        }
-
-        @Override
-        public int compareTo(Node other) {
-            return Integer.compare(this.weight, other.weight);
-        }
-    }
+    public static int[] result; //결과 저장
+    public static boolean[] visited; //방문 여부
+    public static int[] arr; //대상 배열
 
     public static void main(String[] args) throws IOException{
-        
+        //nPr
+
         st = new StringTokenizer(br.readLine());
-        int V = Integer.parseInt(st.nextToken());
-        int E = Integer.parseInt(st.nextToken());
-        int K = Integer.parseInt(st.nextToken());
+        int n = Integer.parseInt(st.nextToken());
+        int r = Integer.parseInt(st.nextToken());
 
-
-        //초기화 영역
-        graph = new ArrayList[V + 1];
-        distance = new int[V + 1];
-
-        for(int i = 1; i <= V; i++) {
-            graph[i] = new ArrayList<>();
+        //배열 초기화
+        arr = new int[n];
+        st = new StringTokenizer(br.readLine());
+        for(int i = 0; i < n; i++) {
+            arr[i] = Integer.parseInt((st.nextToken()));
         }
 
-        Arrays.fill(distance, INF);
-    }
-    
-=======
-    
+        visited = new boolean[n];
+        result = new int[r];   
+        }
 
->>>>>>> Stashed changes
+        permutation(0, R)
+
+ 
 }
