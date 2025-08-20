@@ -1,4 +1,5 @@
 //SWEA_1238_Contact
+//cspell:ignore SWEA
 
 package SWEA_1200;
 

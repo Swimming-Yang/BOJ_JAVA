@@ -1,3 +1,5 @@
+//BOJ_2206_벽 부수고 이동하기
+
 package BOJ_2200;
 
 import java.io.*;
