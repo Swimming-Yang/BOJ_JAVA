@@ -14,11 +14,13 @@ public class BOJ_2206 {
     public static int[][] graph;
     public static boolean[][][] visited;
 
+    public static int cols, rows;
+
     public static void main(String[] args) throws IOException{
         
         st = new StringTokenizer(br.readLine());
-        int rows = Integer.parseInt(st.nextToken());
-        int cols = Integer.parseInt(st.nextToken());
+        rows = Integer.parseInt(st.nextToken());
+        cols = Integer.parseInt(st.nextToken());
 
         graph = new int[rows][cols];
         visited = new boolean[rows][cols][2];
@@ -49,7 +51,29 @@ public class BOJ_2206 {
                 System.out.println(cur_d);
                 return;
             }
-        }
+
+            for(int i = 0; i < 4; i++) {
+                int nx = cur_x + dx[i];
+                int ny = cur_y + dy[i];
+
+                if(nx >= 0 && nx < rows && ny >=0 && ny < cols) {
+                    //1. 다음위치 빈공간
+                    if(graph[nx][ny] == 0 && !visited[nx][ny][cur_b]) {
+                        q.offer(new int[]{nx, ny, cur_d + 1, cur_b});
+                        visited[nx][ny][cur_b] = true;
+                    }
+
+                    //2. 다음위치 벽 + 아직 안부숨
+                    if(graph[nx][ny] == 1 && cur_b == 0 && !visited[nx][ny][1]) {
+                        q.offer(new int[]{nx, ny, cur_d + 1, 1});
+                        visited[nx][ny][1] = true;                    
+                    }
+                    }
+                }
+            }
+                    System.out.println(-1);
+            }
     }
 
-}
+
+
