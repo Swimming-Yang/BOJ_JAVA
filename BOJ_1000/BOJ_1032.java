@@ -1,7 +1,6 @@
 package BOJ_1000;
 
 import java.io.*;
-import java.util.*;
 
 public class BOJ_1032 {
     public static void main(String[] args) throws IOException {

@@ -1,4 +1,4 @@
-package BOJ_15600;
+package BOJ_15600.BOJ_15650;
 
 import java.io.*;
 import java.util.*;

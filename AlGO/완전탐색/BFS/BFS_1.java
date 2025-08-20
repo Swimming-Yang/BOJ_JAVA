@@ -30,8 +30,8 @@ public class BFS_1 {
 
         for(int i = 0; i < Edge; i++) {
             st = new StringTokenizer(br.readLine());
-            int start = Integer.parseInt(br.readLine());
-            int end = Integer.parseInt(br.readLine());
+            int start = Integer.parseInt(st.nextToken());
+            int end = Integer.parseInt(st.nextToken());
 
             graph[start].add(end);
             graph[end].add(start);

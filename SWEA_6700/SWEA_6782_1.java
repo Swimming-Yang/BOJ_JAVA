@@ -3,8 +3,8 @@
 package SWEA_6700;
 
 import java.io.*;
-import java.util.*; //어레이, 스캐너, 해쉬맵 사용할떄 선언해야 함.
-import java.lang.*; //기본적으로 포함되어있다고 함 
+//import java.util.*; //어레이, 스캐너, 해쉬맵 사용할떄 선언해야 함.
+//import java.lang.*; //기본적으로 포함되어있다고 함 
 
 /*
  * 시간초과 해결 코드

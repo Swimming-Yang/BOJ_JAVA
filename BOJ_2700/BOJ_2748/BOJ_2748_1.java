@@ -3,8 +3,6 @@
 package BOJ_2748;
 
 import java.io.*;
-import java.util.*;
-import java.lang.*;
 
 public class BOJ_2748_1 {
 

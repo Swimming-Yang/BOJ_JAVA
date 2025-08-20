@@ -106,10 +106,10 @@ public class Dijkstra {
 
             for (Node next : graph[current_Node]) {
                 int next_Node = next.end;
-                int edgeWeight = next.weight;
+                int nextWeight = next.weight;
 
                 //현재 정점 + 다음 정점
-                int newDistance = distance[current_Node] + edgeWeight;
+                int newDistance = distance[current_Node] + nextWeight;
 
                 //더 짧은거리 발견
                 if(newDistance < distance[next_Node]) {
