@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class prc {
+public class prc2 {
 
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static StringTokenizer st;
