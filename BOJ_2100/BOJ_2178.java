@@ -38,7 +38,7 @@ public class BOJ_2178 {
     }
 
     public static void bfs(int x, int y, int distance) {
-        Queue<int[]> q = new LinkedList<>();
+        Queue<int[]> q = new ArrayDeque<>();
         q.offer(new int[]{x, y, distance});
         visited[x][y] = true;
 
