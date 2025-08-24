@@ -23,6 +23,9 @@ public class power {
 
     public static int power_cul(int num, int power_num) {
         //Base Code
+        if(power_num == 0) {
+            return 1;
+        }
         if(power_num == 1) {
             return num;
         }
