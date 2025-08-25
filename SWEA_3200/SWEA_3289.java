@@ -1,13 +1,14 @@
-//cspell:ignore SWEA
-//SWEA_7465_창용마을무리의개수
+//cspell:ignore SWEA, oper
+//SWEA_3289_서로소 집합
 
-package SWEA_7400;
+package SWEA_3200;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
-public class SWEA_7465 {
-    
+public class SWEA_3289 {
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static StringTokenizer st;
     
@@ -18,36 +19,35 @@ public class SWEA_7465 {
         
         for(int t = 1; t <= T; t++) {
             st = new StringTokenizer(br.readLine());
-            int N = Integer.parseInt(st.nextToken());
-            int M = Integer.parseInt(st.nextToken());
+            int n = Integer.parseInt(st.nextToken());
+            int m = Integer.parseInt(st.nextToken());
             
             //초기화
-            parent = new int[N + 1];
-            for(int i = 1; i <= N; i++) {
-                parent[i] = i;  //make set 작은단위 자기자신 부모
+            parent = new int[n + 1];
+            for(int i = 1; i <= n; i++) {
+                parent[i] = i;  //make set
             }
             
-            for(int i = 0; i < M; i++) {
+            System.out.print("#" + t + " ");
+            
+            for(int i = 0; i < m; i++) {
                 st = new StringTokenizer(br.readLine());
+                int oper = Integer.parseInt(st.nextToken());
                 int a = Integer.parseInt(st.nextToken());
                 int b = Integer.parseInt(st.nextToken());
                 
-                union(a, b);
+                if(oper == 0) {
+                    union(a, b);
+                } else if(oper == 1) {
+                    if(find(a) == find(b)) {
+                        System.out.print("1");
+                    } else {
+                        System.out.print("0");
+                    }
+                }
             }
             
-            /* 
-             * HashSet공부 따로 해야 함.
-             * 중복 자동 제거됨 -> 
-             * 
-             * TreeSet -> 중복x 정렬
-             * 
-             */
-            HashSet<Integer> groups = new HashSet<>();
-            for(int i = 1; i <= N; i++) {
-                groups.add(find(i));
-            }
-            
-            System.out.println("#" + t + " " + groups.size());
+            System.out.println();
         }
     }
     
