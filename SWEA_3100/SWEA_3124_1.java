@@ -1,4 +1,5 @@
 //SWEA_3124_최소 스패닝 트리_크루스칼
+//cspell:ignore SWEA
 
 package SWEA_3100;
 

@@ -5,7 +5,7 @@ package BOJ_3000;
 import java.io.*;
 import java.util.*;
 
-public class BOJ_2052 {
+public class BOJ_3052 {
 
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static StringTokenizer st;

@@ -1,15 +1,19 @@
+//BOJ_1922_네트워크연결_프림
+
+package BOJ_1900.BOJ_1922;
+
 import java.io.*;
 import java.util.*;
 
-public class practice {
-    
+public class BOJ_1922_prim {
+
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static StringTokenizer st;
 
-    public static ArrayList<Edge>[] graph;
     public static boolean[] visited;
+    public static ArrayList<Edge>[] graph;
 
-    static class Edge implements Comparable<Edge> {
+    public static class Edge implements Comparable<Edge> {
         int end;
         int weight;
 
@@ -23,47 +27,47 @@ public class practice {
             return Integer.compare(this.weight, other.weight);
         }
     }
+
     public static void main(String[] args) throws IOException{
         st = new StringTokenizer(br.readLine());
-        int V = Integer.parseInt(st.nextToken());
-        int E = Integer.parseInt(st.nextToken());
+        int com_num = Integer.parseInt(st.nextToken());
+        int line_num = Integer.parseInt(st.nextToken());
 
-        graph = new ArrayList[V + 1];
-        for(int i = 0; i <= V; i++) {
+        //^초기화좀 잘해라 */
+        graph = new ArrayList[com_num + 1];
+        for(int i = 0; i <= com_num; i++) {
             graph[i] = new ArrayList<>();
         }
 
-        for(int i = 0; i < E; i++) {
+        for(int i = 0; i < line_num; i++) {
             st = new StringTokenizer(br.readLine());
-            int A = Integer.parseInt(st.nextToken());
-            int B = Integer.parseInt(st.nextToken());
-            int C = Integer.parseInt(st.nextToken());
-            //*양방향 가중치 그래프 */
-            graph[A].add(new Edge(B, C));
-            graph[B].add(new Edge(A, C));
+            int start = Integer.parseInt(st.nextToken());
+            int end = Integer.parseInt(st.nextToken());
+            int weight = Integer.parseInt(st.nextToken());
+
+            graph[start].add(new Edge(end, weight));
+            graph[end].add(new Edge(start, weight));
         }
 
-        int mstWeight = prim(V);
+        int mstWeight = prim(com_num);
         System.out.println(mstWeight);
     }
 
-    public static int prim(int V) {
-        visited = new boolean[V + 1];
+    public static int prim(int com_num) {
+        visited = new boolean[com_num + 1];
 
-        //*우선순위 큐 생성 */
         PriorityQueue<Edge> pq = new PriorityQueue<>();
         int totalWeight = 0;
         int edgeCount = 0;
 
-        //*시작 노드 지정 */
-        int start = 1;
-        visited[start] = true;
-        
-        for(Edge edge : graph[start]) {
+        int start_node = 1;
+        visited[start_node] = true;
+
+        for(Edge edge : graph[start_node]) {
             pq.offer(edge);
         }
 
-        while(!pq.isEmpty() && edgeCount < V - 1) {
+        while(!pq.isEmpty() && edgeCount < com_num - 1) {
             Edge current = pq.poll();
 
             if(visited[current.end]) {
@@ -73,9 +77,7 @@ public class practice {
             visited[current.end] = true;
             totalWeight += current.weight;
 
-
             for(Edge edge : graph[current.end]) {
-                
                 if(!visited[edge.end]) {
                     pq.offer(edge);
                 }
