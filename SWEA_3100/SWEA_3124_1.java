@@ -1,7 +1,6 @@
-package SWEA_3100;
-
 //SWEA_3124_최소 스패닝 트리_크루스칼
-//cspell:ignore SWEA
+
+package SWEA_3100;
 
 import java.io.*;
 import java.util.*;
@@ -85,7 +84,6 @@ public class SWEA_3124_1 {
         if(parent[x] == x) {
             return x;
         }
-        
         parent[x] = findSet(parent[x]);
         return parent[x];
     }
