@@ -1,28 +1,33 @@
+/*
+ * BOJ_1197_최소 스패닝 트리 - 크루스칼
+ */
+package BOJ_1100.BOJ_1197;
+
 import java.io.*;
 import java.util.*;
 
-public class practice {
-    
+public class BOJ_1197_1 {
+
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static StringTokenizer st;
 
     public static ArrayList<Edge> edges;
     public static int[] parent;
+    public static int[] rank;
 
-    public static int mstWeight;
-    public static int edgeCount;
+
 
     public static void main(String[] args) throws IOException{
-        //*첫번째 줄에 정점의 개수와 간선의 개수가 주어진다 */
-        //*이때 V는 정점의 개수, E는 간선의 개수 */
+
+        //*첫째줄의 정점의 개수V와 간선의 개수 E가 주어진다 */
         st = new StringTokenizer(br.readLine());
         int V = Integer.parseInt(st.nextToken());
         int E = Integer.parseInt(st.nextToken());
 
+        //*edge자료형을 담을 인접리스트 생성 */
         edges = new ArrayList<>();
-        
-        //*다음 E개의 줄에는 각 간선에 대한 정보를 나타내는 세 정수 A, B, C가 주어진다 */
-        //*이는 A번의 정점과 B번의 정점이 가중치 C인 간선으로 연결되어 있다는 의미이다. */
+
+        //*다음 E개의 줄에는 각 간선에 정보를 나타내는 세 정수 A, B, C가 주어진다 */
         for(int i = 0; i < E; i++) {
             st = new StringTokenizer(br.readLine());
             int A = Integer.parseInt(st.nextToken());
@@ -31,23 +36,17 @@ public class practice {
 
             edges.add(new Edge(A, B, C));
         }
-
-        //*오름차순으로 정렬함 */
         Collections.sort(edges);
         makeSet(V);
 
-        mstWeight = 0;
-        edgeCount = 0;
+        int mstWeight = 0;
+        int edgeCount = 0;
 
         for(Edge edge : edges) {
-            //*두 노드의 정점이 다르다면 */
             if(findSet(edge.start) != findSet(edge.end)) {
-                //*연결하고 */
                 union(edge.start, edge.end);
-                //*두 노드의 가중치만큼 더해줌 */
-                mstWeight += edge.weight; 
-                //*간선 카운트 + 1 */
-                edgeCount += 1;
+                mstWeight += edge.weight;
+                edgeCount++;
             }
 
             if(edgeCount == V - 1) {
@@ -58,9 +57,7 @@ public class practice {
     }
 
     static class Edge implements Comparable<Edge> {
-        int start;
-        int end;
-        int weight;
+        int start, end, weight;
 
         public Edge(int start, int end, int weight) {
             this.start = start;
@@ -74,10 +71,9 @@ public class practice {
         }
     }
 
-
     public static void makeSet(int x) {
         parent = new int[x + 1];
-        for (int i = 1; i <= x; i++) {
+        for(int i = 1; i <= x; i++) {
             parent[i] = i;
         }
     }
@@ -86,17 +82,19 @@ public class practice {
         if(parent[x] == x) {
             return x;
         }
+        
         parent[x] = findSet(parent[x]);
         return parent[x];
     }
 
-    public static void union(int A, int B) {
-        int root_A = findSet(A);
-        int root_B = findSet(B);
+    public static void union(int a, int b) {
+        int root_a = findSet(a);
+        int root_b = findSet(b);
 
-        //*다를때 그냥 랭크없이 붙여주기만 하면됨 */
-        if(root_A != root_B) {
-            parent[root_B] = root_A;
+        if(root_a != root_b) {
+            parent[root_b] = root_a;
+
         }
     }
+
 }

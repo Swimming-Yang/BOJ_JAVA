@@ -1,7 +1,7 @@
 //SWEA_1247_최적경로
 //cspell:ignore SWEA
 
-package SWEA_1200;
+package SWEA_1200.SWEA_1247;
 
 import java.io.*;
 import java.util.*;
