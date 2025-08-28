@@ -6,100 +6,70 @@ public class prc2 {
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static StringTokenizer st;
 
-    public static int dx[] = {0, 1, 0, -1};
-    public static int dy[] = {1, 0, -1, 0};
+    public static int[] parent;
 
-    public static int[][] graph;
-    public static int[][] distance;
+    public static int City_num;
 
-    public static int size;
+static class Edge implements Comparable<Edge> {
+    int end;
+    int weight;
 
-    public static void main(String[] args) throws IOException{
-        int testcase_num = Integer.parseInt(br.readLine());
-        
-        for(int testcase = 1; testcase <= testcase_num; testcase++) {
-            size = Integer.parseInt(br.readLine());
-            
-            //초기화
-            graph = new int[size][size];
-            distance = new int[size][size];
+    Edge(int end, int weight) {
+        this.end = end;
+        this.weight = weight;
+    }
+    
+    @Override
+    public int compareTo(Edge other) {
+        return Integer.compare(this.weight, other.weight);
+    }
+}
+public static void main(String[] args) throws IOException{
+    //*첫줄에 도시의 수 N이 주어진다 */
+    int city_num = Integer.parseInt(br.readLine());
+    //*둘쨋줄에 여행 계획에 속한 도시들의 수 M이 주어진다 */
+    int travle_city = Integer.parseInt(br.readLine());
+    //*다음 N개의 줄에는 N개의 정수가 주어진다 */
+    for(int i = 0; i < city_num; i++) {
+        st = new StringTokenizer(br.readLine());
+        int start = Integer.parseInt(st.nextToken());
+        int end = Integer.parseInt(st.nextToken());
+        int weight = Integer.parseInt(st.nextToken());
 
-            for(int i = 0; i < size; i++) {
-                for(int j = 0; j < size; j++) {
-                    distance[i][j] = Integer.MAX_VALUE;
-                }
-            }
+        List<Edge> edgeList = new ArrayList<>();
+        edgeList.add(new Edge(end, weight));   
+    }
+    makeSet(city_num);
+    Collections.sort(Edge);
+    //*i번째 줄의 j번째 수는 i번 도시와 j번 도시의 연결 정보를 의미한다. */
 
-            for(int i = 0; i < size; i++) {
-                st = new StringTokenizer(br.readLine());
-                for(int j = 0; j < size; j++) {
-                    graph[i][j] = Integer.parseInt(st.nextToken());
-                }
-            }
+    //^출력 : 첫줄에 여행이 가능하면 YES, 아니면 NO를 출력한다./
 
-            dijkstra(0, 0);
+}
 
-            System.out.println("#" + testcase + " " + distance[size - 1][size - 1]);
-        }
+public static void MakeSet(int a) {
+    parent = new int[a + 1];
+    for(int i = 0; i <= a; i++) {
+        parent[i] = i;
+        return;
+    }
+}
+
+public static int FindSet(int a) { 
+    if(parent[a] == a) {
+        return a;
     }
 
-    static class Node implements Comparable<Node> {
-        int x;
-        int y; //도착 정점
-        int weight; //가중치
+    parent[a] = FindSet(parent[a]);
+    return parent[a];
+}
 
-        Node(int x, int y, int weight) {
-            this.x = x;
-            this.y = y;
-            this.weight = weight;
-        }
+public static void Union(int a, int b) {
+    int root_a = FindSet(a);
+    int root_b = FindSet(b);
 
-        @Override
-        public int compareTo(Node other) {
-            return Integer.compare(this.weight, other.weight);
-        }
+    if(root_a != root_b) {
+        parent[root_b] = a;
     }
-
-    public static void dijkstra(int start_x, int start_y) {
-        //우선순위 큐 사용 (가중치가 작은 순서대로 자동 정렬)
-        PriorityQueue<Node> pq = new PriorityQueue<>();
-
-        //시작 정점의 거리 0으로 설정
-        distance[start_x][start_y] = 0;
-        pq.offer(new Node(start_x, start_y, 0));
-
-        while(!pq.isEmpty()) {
-            Node current = pq.poll();
-            int current_Weight = current.weight;
-
-            //이미 더 가까운게 있으면 패스
-            if (current_Weight > distance[current.x][current.y]) {
-                continue;
-            }
-
-            for(int i = 0; i < 4; i++) {
-                int nx = current.x + dx[i];
-                int ny = current.y + dy[i];
-
-                if(nx >= 0 && nx < size && ny >= 0 && ny < size) {
-                    int nextWeight = current.weight;
-
-                    //가중치가 같을 때
-                    if(graph[current.x][current.y] == graph[nx][ny]) {
-                        nextWeight += 1;
-                    }
-                    //nx,y의 가중치가 클때
-                    else if (graph[current.x][current.y] < graph[nx][ny]) {
-                        nextWeight += ((graph[nx][ny] - graph[current.x][current.y]) * 2);
-                    }
-                    
-
-                    if (nextWeight < distance[nx][ny]) {
-                        distance[nx][ny] = nextWeight;
-                        pq.offer(new Node(nx, ny, nextWeight));
-                    }
-                }
-            }
-        }
-    }
+}
 }
