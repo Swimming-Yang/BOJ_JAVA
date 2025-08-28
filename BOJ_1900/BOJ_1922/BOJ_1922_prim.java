@@ -29,9 +29,8 @@ public class BOJ_1922_prim {
     }
 
     public static void main(String[] args) throws IOException{
-        st = new StringTokenizer(br.readLine());
-        int com_num = Integer.parseInt(st.nextToken());
-        int line_num = Integer.parseInt(st.nextToken());
+        int com_num = Integer.parseInt(br.readLine());
+        int line_num = Integer.parseInt(br.readLine());
 
         //^초기화좀 잘해라 */
         graph = new ArrayList[com_num + 1];
