@@ -33,12 +33,11 @@ public class SWEA_5656 {
                 st = new StringTokenizer(br.readLine());
                 for(int k = 0; k < W; k++) {
                     graph[j][k] = Integer.parseInt(st.nextToken());
-                     if(graph[j][k] != 0) {
+                    if(graph[j][k] != 0) {
                     cur_block += 1;
                     }
                 }
             }
-
 
             
             int result = dfs(0, graph, cur_block);
