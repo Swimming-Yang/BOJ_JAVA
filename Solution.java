@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class practice {
+public class Solution {
 
     static int T, K;
     static int[][] gears; // [4][8]
