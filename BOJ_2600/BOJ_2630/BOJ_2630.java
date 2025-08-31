@@ -1,6 +1,6 @@
 //&BOJ_2563_색종이 만들기 */
 
-package BOJ_2600;
+package BOJ_2600.BOJ_2630;
 
 import java.io.*;
 import java.util.*;
