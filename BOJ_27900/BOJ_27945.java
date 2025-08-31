@@ -1,4 +1,5 @@
 //&BOJ_7945_슬슬가지를 먹지 않으면 죽는다 */
+//cspell:ignore mstday
 package BOJ_27900;
 
 import java.io.*;
@@ -14,17 +15,17 @@ public class BOJ_27945 {
     static class Edge implements Comparable<Edge> {
         int start;
         int end;
-        int weight;
+        int day;
         
-        public Edge(int start, int end, int weight) {
+        public Edge(int start, int end, int day) {
             this.start = start;
             this.end = end;
-            this.weight = weight;
+            this.day = day;
         }
         
         @Override
         public int compareTo(Edge o) {
-            return this.weight - o.weight;
+            return this.day - o.day;
         }
     }
     
@@ -66,9 +67,9 @@ public class BOJ_27945 {
             st = new StringTokenizer(br.readLine());
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
-            int weight = Integer.parseInt(st.nextToken());
+            int day = Integer.parseInt(st.nextToken());
             
-            edges.add(new Edge(start, end, weight));
+            edges.add(new Edge(start, end, day));
         }
         
         makeSet(N);
@@ -78,7 +79,7 @@ public class BOJ_27945 {
         int edgeCount = 0;
         
         for(Edge edge : edges) {
-            if(mstday != edge.weight) break;  // 연속성 체크: 현재 날짜와 노점 날짜가 다르면 중단
+            if(mstday != edge.day) break;  // 연속성 체크: 현재 날짜와 노점 날짜가 다르면 중단
             if(findSet(edge.start) != findSet(edge.end)) {
                 union(edge.start, edge.end);
                 mstday++;
