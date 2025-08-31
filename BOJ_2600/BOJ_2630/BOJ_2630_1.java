@@ -45,11 +45,11 @@ public class BOJ_2630_1 {
             return;
         }
         else { //*아니라면 반으로 나눠야 함 */
-            newSize = Size /= 2;
-            divide(x, y, newSize);
-            divide(x + newSize, y, newSize);
-            divide(x, y + newSize, newSize);
-            divide(x + newSize, y + newSize, newSize);
+            int halfSize = Size / 2;
+            divide(x, y, halfSize);
+            divide(x + halfSize, y, halfSize);
+            divide(x, y + halfSize, halfSize);
+            divide(x + halfSize, y + halfSize, halfSize);
         }
     }
 
