@@ -64,7 +64,7 @@ public class BOJ_1717 {
     }
 
     /**
-     * Find 연산: Path Compression 적용
+     *  연산: Path Compression 적용
      * 의사코드:
      * IF parent[x] == x THEN
      *     RETURN x  // 루트 노드
