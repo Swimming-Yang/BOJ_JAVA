@@ -54,7 +54,7 @@ public class BOJ_1717 {
                 union(a, b);
             } else if(command == 1) {
                 // Find 연산: a와 b가 같은 집합에 속하는지 확인
-                if(find(a) == find(b)) {
+                if(findSet(a) == findSet(b)) {
                     System.out.println("YES");  // 같은 집합
                 } else {
                     System.out.println("NO");   // 다른 집합
@@ -73,13 +73,13 @@ public class BOJ_1717 {
      *     RETURN parent[x]
      * END IF
      */
-    public static int find(int x) {
+    public static int findSet(int x) {
         // Base case: 자기 자신이 루트인 경우
         if(x == parent[x]) {
             return x;
         }
         // Recursive case: Path Compression으로 루트를 직접 연결
-        return parent[x] = find(parent[x]);
+        return parent[x] = findSet(parent[x]);
     }
 
     /**
@@ -103,8 +103,8 @@ public class BOJ_1717 {
      */
     public static void union(int a, int b) {
         // 1단계: 각 원소의 루트 찾기
-        int rootA = find(a);
-        int rootB = find(b);
+        int rootA = findSet(a);
+        int rootB = findSet(b);
 
         // 2단계: 이미 같은 집합인지 확인
         if(rootA == rootB) {
