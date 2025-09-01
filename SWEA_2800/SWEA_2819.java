@@ -22,7 +22,7 @@ public class SWEA_2819 {
      * 각 칸의 적혀있는 수를 이어붙이면 7자리 수가 됨.
      * 격자 판을 벗어나는 이동은 가능하지 않음.(이동시 경곗값 필요)
      * 
-     * 아아.. hashset이란것은 자동으로 중복을 제거해주는 물건이다 ..
+     * 아아.. hashset이란것은 자동으로 중복을 제거해주는 물건이지 ..
      */
 
     public static void main(String[] args) throws IOException{
