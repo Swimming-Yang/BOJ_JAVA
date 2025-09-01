@@ -22,7 +22,8 @@ public class SWEA_2819 {
      * 각 칸의 적혀있는 수를 이어붙이면 7자리 수가 됨.
      * 격자 판을 벗어나는 이동은 가능하지 않음.(이동시 경곗값 필요)
      * 
-     * 아아.. hashset이란것은 자동으로 중복을 제거해주는 물건이지 ..
+     * 아아.. 이것은 hashSet이라는 물건이다.. 
+     * 자동으로 중복을 제거해주는 물건이지 ..
      */
 
     public static void main(String[] args) throws IOException{
@@ -63,8 +64,10 @@ public class SWEA_2819 {
             int nx = x + dx[i];
             int ny = y + dy[i];
 
+            String new_word = String.valueOf(map[nx][ny]);
+            
             if(nx >= 0 &&nx < 4 && ny >= 0 && ny < 4) {
-                dfs(nx, ny, depth + 1, map_word + map[nx][ny]);
+                dfs(nx, ny, depth + 1, map_word + new_word);
             }
         }
     }
