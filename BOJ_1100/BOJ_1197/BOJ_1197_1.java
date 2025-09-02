@@ -59,7 +59,7 @@ public class BOJ_1197_1 {
                 mst_weight += edge.weight;
                 edge_count++;
             }
-            if(edge_count == V - 1)
+            if(edge_count == V - 1);
             break;
         }
         System.out.println(mst_weight);

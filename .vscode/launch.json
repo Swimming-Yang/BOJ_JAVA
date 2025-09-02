@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "BOJ_1238",
+            "request": "launch",
+            "mainClass": "BOJ_1200.BOJ_1238",
+            "projectName": "BOJ_JAVA_ce2a1b89"
+        },
+        {
+            "type": "java",
             "name": "BOJ_1197_1",
             "request": "launch",
             "mainClass": "BOJ_1100.BOJ_1197.BOJ_1197_1",
