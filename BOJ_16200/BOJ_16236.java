@@ -8,15 +8,17 @@ import java.util.*;
 public class BOJ_16236 {
 
     //*탐색배열 위쪽 상 -> 왼 -> 하 -> 오 */
-    public static int[] dx = {0, -1, 0, 1};
-    public static int[] dy = {1, 0, -1, 0};
+    public static int[] dx = {-1, 0, 0, 1};
+    public static int[] dy = {0, -1, 1, 0};
 
     public static int[][] map;
     public static boolean[][] visited;
-    //*물고기의 크기 */
+
+
     public static int map_size;
     public static int size = 2;
-    public static int cx, cy, nx, ny;
+    public static int cx, cy;
+    public static int eatCount = 0;
 
     public static class Location implements Comparable<Location> {
         int loc_x;
@@ -52,7 +54,6 @@ public class BOJ_16236 {
         map_size = Integer.parseInt(br.readLine());
 
         map = new int[map_size][map_size];
-        visited = new boolean[map_size][map_size];
 
         for(int i = 0; i < map_size; i++) {
             st = new StringTokenizer(br.readLine());
@@ -66,13 +67,39 @@ public class BOJ_16236 {
                 }
             }
         }
-
-        bfs(cx, cy, 0);
+        
+        int totalTime = 0;
+        
+        while(true) {
+            visited = new boolean[map_size][map_size];  // 매번 초기화
+            Location target = bfs(cx, cy, 0);
+            
+            if(target == null) {
+                // 더 이상 먹을 물고기가 없으면 게임 종료
+                break;
+            }
+            
+            // 물고기를 먹었다면
+            totalTime += target.weight;      // 시간 누적
+            cx = target.loc_x;               // 상어 위치 업데이트
+            cy = target.loc_y;
+            map[cx][cy] = 0;                 // 먹은 물고기 제거
+            
+            // 상어 크기 업데이트
+            eatCount++;
+            if(eatCount == size) {
+                size++;
+                eatCount = 0;
+            }
+        }
+        
+        System.out.println(totalTime);
     }
 
-    public static void bfs(int cx, int cy, int dist) {
+    public static Location bfs(int cx, int cy, int dist) {
 
         Queue<Location> q = new LinkedList<>();
+        PriorityQueue<Location> pq = new PriorityQueue<>();
 
         //*시작점 방문 체크 */
         visited[cx][cy] = true;
@@ -88,16 +115,24 @@ public class BOJ_16236 {
                 int nx = cur_x + dx[i];
                 int ny = cur_y + dy[i];
 
-                if(nx > 0 && nx <= map_size - 1 && ny > 0 && ny <= map_size - 1) {
-                    if(!visited[nx][ny] && map[nx][ny] < size) {
+                if(nx >= 0 && nx < map_size && ny >= 0 && ny < map_size) {
+                    if(!visited[nx][ny] && map[nx][ny] <= size) {
+                        visited[nx][ny] = true;
+                        q.offer(new Location(nx, ny, current.weight + 1));
                         
+                        if(map[nx][ny] > 0 && map[nx][ny] < size) {
+                            pq.add(new Location(nx, ny, current.weight + 1));
+                        }
                     }
                 }
-
-
             }
         }
         
+        if(!pq.isEmpty()) {
+            return pq.poll();
         }
-    };
-
+        else {
+            return null;
+        }
+    }
+};
