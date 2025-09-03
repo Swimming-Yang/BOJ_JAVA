@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "BOJ_1463_bottom_up",
+            "request": "launch",
+            "mainClass": "BOJ_1400.BOJ_1463.BOJ_1463_bottom_up",
+            "projectName": "BOJ_JAVA_ce2a1b89"
+        },
+        {
+            "type": "java",
+            "name": "BOJ_1463_top_down",
+            "request": "launch",
+            "mainClass": "BOJ_1400.BOJ_1463.BOJ_1463_top_down",
+            "projectName": "BOJ_JAVA_ce2a1b89"
+        },
+        {
+            "type": "java",
+            "name": "BOJ_1463",
+            "request": "launch",
+            "mainClass": "BOJ_1400.BOJ_1463",
+            "projectName": "BOJ_JAVA_ce2a1b89"
+        },
+        {
+            "type": "java",
             "name": "BOJ_1932",
             "request": "launch",
             "mainClass": "BOJ_1900.BOJ_1932",
