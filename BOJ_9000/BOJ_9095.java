@@ -3,9 +3,6 @@ package BOJ_9000;
 import java.io.*;
 import java.util.*;
 
-import BOJ_1700.test;
-
-
 public class BOJ_9095 {
 
     public static int[] arr = new int[11];
