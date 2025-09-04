@@ -24,7 +24,7 @@ public class BOJ_1463_top_down {
 
         if(dp[n] == 0) {
             if(n % 6 == 0) {
-                dp[n] = Math.min(recursive(n / 3) + 1, Math.min(recursive(n / 2) + 1, recursive(n - 1) + 1));
+                dp[n] = Math.min(Math.min(recursive(n / 3) + 1, (recursive(n / 2) + 1)), recursive(n - 1) + 1);
             }
             else if(n % 3 == 0) {
                 dp[n] = Math.min(recursive(n - 1) + 1, recursive(n / 3) + 1);
