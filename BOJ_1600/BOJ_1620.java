@@ -1,6 +1,6 @@
 //BOJ_1620 나는야 포켓몬 마스터
 
-package BOJ_1620;
+package BOJ_1600;
 
 import java.io.*;
 import java.util.*;
