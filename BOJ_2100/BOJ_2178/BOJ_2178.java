@@ -1,6 +1,6 @@
 //BOJ_2178_미로찾기
 
-package BOJ_2100;
+package BOJ_2100.BOJ_2178;
 
 import java.io.*;
 import java.util.*;
