@@ -1,6 +1,6 @@
 //BOJ_1260 DFS와 BFS
 
-package BOJ_1200;
+package BOJ_1200.BOJ_1260;
 
 import java.io.*;
 import java.util.*;
