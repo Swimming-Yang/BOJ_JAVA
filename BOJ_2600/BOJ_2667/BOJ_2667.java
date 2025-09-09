@@ -1,5 +1,5 @@
 //BOJ_2667_단지번호붙이기 *
-package BOJ_2600;
+package BOJ_2600.BOJ_2667;
 
 import java.io.*;
 import java.util.*;
