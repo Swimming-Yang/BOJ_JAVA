@@ -1,6 +1,6 @@
 //BOJ_11047_동전_0
 
-package BOJ_11000;
+//package BOJ_11000;
 
 import java.io.*;
 import java.util.*;

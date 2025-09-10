@@ -8,13 +8,14 @@ public class BOJ_15649_DFS {
     public static int N;                //선택 배열범위
     public static int R;                //선택할 개수
     public static int[] current;            //현재 순열
-    public static boolean[] visited;    //방문 여부 배열
+    public static boolean[] visited;     //방문 여부 배열
     public static StringBuilder sb = new StringBuilder();
-    public static StringTokenizer st;
-    public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
     public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+
         st = new StringTokenizer(br.readLine());
+
 
         N = Integer.parseInt(st.nextToken());   //배열의 길이는?
         R = Integer.parseInt(st.nextToken());   //몇개를 선택?
@@ -41,7 +42,7 @@ public class BOJ_15649_DFS {
                 current[depth] = i + 1;
             dfs(depth + 1);
             visited[i] = false; 
-           }
+            }
         }
     }
 }
