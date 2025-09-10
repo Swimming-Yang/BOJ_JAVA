@@ -1,5 +1,4 @@
 //&BOJ_23258_밤편지
-
 package BOJ_23200;
 
 import java.io.*;
@@ -7,45 +6,41 @@ import java.util.*;
 
 public class BOJ_23258 {
 
-    public static int[][][] dist;
-    public static int INF = 100_000_000;
+    public static int[][][] map;
+    public static final int INF = 100_000_000;
 
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
         StringTokenizer st;
         
         st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken());
+        int Node = Integer.parseInt(st.nextToken());
         int Q = Integer.parseInt(st.nextToken());
 
-        dist = new int[N + 1][N + 1][N + 1];
+        map = new int[Node + 1][Node + 1][Node + 1];
         
-        for(int i = 1; i <= N; i++) {
+        for(int i = 1; i <= Node; i++) {
             st = new StringTokenizer(br.readLine());
-            for(int j = 1; j <= N; j++) {
+            for(int j = 1; j <= Node; j++) {
                 int weight = Integer.parseInt(st.nextToken());
-                // 모든 k에 대해 초기값 설정
-                for(int k = 0; k <= N; k++) {
-                    if(i == j) {
-                        dist[k][i][j] = 0;
-                    } else if(weight == 0) {
-                        dist[k][i][j] = INF;  //*연결x
-                    } else {
-                        dist[k][i][j] = weight;
+                if(i == j) {
+                    //*자기자신 대각선 */
+                    for(int k = 0; k <= Node; k++) {
+                        map[i][j][k] = 0;
                     }
+                } else {
+                    //*연결 */
+                    map[i][j][0] = (weight == 0) ? INF : weight;
                 }
             }
         }
 
-        for(int k = 1; k <= N; k++) {
-            for(int i = 1; i <= N; i++) {
-                for(int j = 1; j <= N; j++) {
-                    dist[k][i][j] = dist[k-1][i][j];
-                    
-                    // k번 집을 새로 경유하는 경우와 비교
-                    if(dist[k-1][i][k] != INF && dist[k-1][k][j] != INF) {
-                        dist[k][i][j] = Math.min(dist[k][i][j], dist[k-1][i][k] + dist[k-1][k][j]);
-                    }
+        //*플로이드 */
+        for(int k = 1; k <= Node; k++) {
+            for(int i = 1; i <= Node; i++) {
+                for(int j = 1; j <= Node; j++) {
+                    map[i][j][k] = Math.min(map[i][j][k-1], map[i][k][k-1] + map[k][j][k-1]);
                 }
             }
         }
@@ -56,11 +51,16 @@ public class BOJ_23258 {
             int s = Integer.parseInt(st.nextToken());  // 출발
             int e = Integer.parseInt(st.nextToken());  // 도착
             
-            if(dist[C][s][e] == INF) {
-                System.out.println(-1); //연결 안됨
+            int idx = C - 1;
+            if(map[s][e][idx] == INF) {
+                sb.append(-1).append('\n');
+                // System.out.println(-1);
             } else {
-                System.out.println(dist[C][s][e]);
+                sb.append(map[s][e][idx]).append('\n');
+                // System.out.println(map[s][e][idx]);
             }
         }
+
+        System.out.print(sb);
     }
 }
