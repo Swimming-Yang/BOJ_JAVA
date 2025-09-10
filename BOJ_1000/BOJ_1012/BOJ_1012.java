@@ -1,6 +1,6 @@
 //BOJ_1012 유기농배추
 
-package BOJ_1000;
+package BOJ_1000.BOJ_1012;
 
 import java.io.*;
 import java.util.*;
