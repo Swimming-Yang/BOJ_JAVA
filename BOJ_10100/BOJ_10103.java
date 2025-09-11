@@ -1,8 +1,11 @@
-import java.io.*;
-import java.util.*;
+package BOJ_10100;
 
-public class practice {
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
+public class BOJ_10103 {
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
@@ -31,7 +34,4 @@ public class practice {
         }
         System.out.println(A + "\n" + B);
     }
-    
 }
-
-
