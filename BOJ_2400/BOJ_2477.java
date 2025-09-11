@@ -1,4 +1,5 @@
 //BOJ_2477 참외밭
+package BOJ_2400;
 
 import java.io.*;
 import java.util.*;

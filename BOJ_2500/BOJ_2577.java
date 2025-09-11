@@ -1,5 +1,5 @@
 //BOJ_2577_숫자의 개수
-
+package BOJ_2500;
 import java.io.*;
 import java.util.*;
 

@@ -1,5 +1,5 @@
 //*BOJ_2563_색종이 */
-
+package BOJ_2500;
 import java.io.*;
 import java.util.*;
 

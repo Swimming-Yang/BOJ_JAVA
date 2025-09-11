@@ -1,3 +1,5 @@
+package BOJ_2400;
+
 import java.io.*;
 
 public class BOJ_2442 {

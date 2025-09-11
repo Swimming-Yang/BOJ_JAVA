@@ -1,5 +1,7 @@
 //&BOJ_2579_계단오르기
 
+package BOJ_2500;
+
 import java.io.*;
 import java.util.*;
 

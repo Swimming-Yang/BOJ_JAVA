@@ -1,5 +1,5 @@
 //BOJ_2566 최댓값
-
+package BOJ_2500;
 import java.io.*;
 import java.util.*;
 

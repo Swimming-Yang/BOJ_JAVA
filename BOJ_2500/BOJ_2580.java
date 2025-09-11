@@ -1,4 +1,6 @@
 //BOJ_2580_스도쿠
+
+package BOJ_2500;
 import java.io.*;
 import java.util.*;
 
