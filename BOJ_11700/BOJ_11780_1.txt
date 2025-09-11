@@ -1,0 +1,186 @@
+1. 입력 및 초기화
+   - Node, Edge 입력받기
+   - map[Node+1][Node+1], next[Node+1][Node+1] 배열 생성
+   
+   FOR i = 1 TO Node:
+       FOR j = 1 TO Node:
+           IF i == j:
+               map[i][j] = 0
+           ELSE:
+               map[i][j] = INF
+           next[i][j] = -1  // 경로 없음
+
+2. 간선 입력 처리
+   FOR i = 0 TO Edge-1:
+       start, end, weight 입력받기
+       IF map[start][end] > weight:  // 중복 간선 처리
+           map[start][end] = weight
+           next[start][end] = end    // 직접 연결
+
+3. 플로이드-워셜 알고리즘 (핵심!)
+   FOR mid = 1 TO Node:           // 경유점
+       FOR str = 1 TO Node:       // 시작점
+           FOR ed = 1 TO Node:    // 도착점
+               IF map[str][mid] != INF AND map[mid][ed] != INF:
+                   IF map[str][ed] > map[str][mid] + map[mid][ed]:
+                       map[str][ed] = map[str][mid] + map[mid][ed]
+                       next[str][ed] = next[str][mid]  // 경로 업데이트
+
+4. 최단거리 출력
+   FOR i = 1 TO Node:
+       FOR j = 1 TO Node:
+           IF map[i][j] == INF:
+               출력 "0 "
+           ELSE:
+               출력 map[i][j] + " "
+       줄바꿈
+
+5. 경로 출력
+   FOR i = 1 TO Node:
+       FOR j = 1 TO Node:
+           IF i == j OR map[i][j] == INF:
+               출력 "0"
+           ELSE:
+               path = getPath(i, j)  // 경로 복원
+               출력 path.size() + " "
+               FOR vertex IN path:
+                   출력 vertex + " "
+           줄바꿈
+
+6. 경로 복원 함수 getPath(start, end):
+   IF next[start][end] == -1:
+       RETURN 빈 경로
+   
+   path = []
+   current = start
+   path에 current 추가
+   
+   WHILE current != end:
+       current = next[current][end]
+       path에 current 추가
+   
+   RETURN path
+핵심 아이디어
+1. next 배열의 역할:
+
+next[i][j] = i에서 j로 가는 최단경로에서 i 다음에 방문하는 정점
+
+2. 경로 업데이트:
+
+직접 연결: next[start][end] = end
+경유 연결: next[str][ed] = next[str][mid]
+
+3. 경로 복원:
+
+start부터 시작해서 next를 따라가며 end까지 추적
+
+이렇게 모든 정점 쌍에 대해 최단거리와 실제 경로를 모두 구할 수 있습니다!재시도수한줄한줄 의사코드 작성편집BOJ_11780 코드를 한 줄씩 의사코드로 분석해드리겠습니다:
+javapackage BOJ_11700;                          // 패키지 선언
+
+import java.io.*;                           // 입출력 관련 라이브러리 import
+import java.util.*;                         // 유틸리티 라이브러리 import
+
+public class BOJ_11780 {                    // BOJ_11780 클래스 선언
+    static final int INF = 100_000_000;     // 무한대 값을 상수로 정의
+    static int[][] map;                     // 최단거리를 저장할 2차원 배열 선언
+    static int[][] next;                    // 경로 복원용 2차원 배열 선언
+    static int Node;                        // 노드(정점) 개수를 저장할 변수 선언
+    static int Edge;                        // 간선 개수를 저장할 변수 선언
+    
+    public static void main(String[] args) throws IOException {  // 메인 함수 시작
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));  // 입력을 위한 BufferedReader 생성
+        
+        Node = Integer.parseInt(br.readLine());    // 첫 번째 줄에서 노드 개수 입력받기
+        Edge = Integer.parseInt(br.readLine());    // 두 번째 줄에서 간선 개수 입력받기
+        
+        map = new int[Node + 1][Node + 1];         // (Node+1) x (Node+1) 크기의 거리 배열 생성
+        next = new int[Node + 1][Node + 1];        // (Node+1) x (Node+1) 크기의 경로 배열 생성
+        
+        // 초기화
+        for(int i = 1; i <= Node; i++) {           // 각 노드에 대해 반복
+            for(int j = 1; j <= Node; j++) {       // 각 노드에 대해 반복
+                if(i == j) {                       // 자기 자신으로 가는 거리라면
+                    map[i][j] = 0;                 // 거리를 0으로 설정
+                } else {                           // 다른 노드로 가는 거리라면
+                    map[i][j] = INF;               // 거리를 무한대로 설정
+                }
+                next[i][j] = -1;                   // 경로 정보를 -1(경로 없음)로 초기화
+            }
+        }
+        
+        // 간선 입력
+        for(int i = 0; i < Edge; i++) {            // 간선 개수만큼 반복
+            StringTokenizer st = new StringTokenizer(br.readLine());  // 한 줄을 읽어서 토큰으로 분리
+            int start = Integer.parseInt(st.nextToken());    // 시작 노드 번호 입력받기
+            int end = Integer.parseInt(st.nextToken());      // 도착 노드 번호 입력받기
+            int weight = Integer.parseInt(st.nextToken());   // 간선의 가중치 입력받기
+            
+            // 중복 간선 처리 (더 작은 비용으로)
+            if(map[start][end] > weight) {         // 기존 거리보다 새로운 가중치가 더 작다면
+                map[start][end] = weight;          // 거리를 새로운 가중치로 업데이트
+                next[start][end] = end;            // start에서 end로 직접 가는 경로로 설정
+            }
+        }
+        
+        // 플로이드-워셜
+        for(int mid = 1; mid <= Node; mid++) {     // 경유점 mid에 대해 반복
+            for(int str = 1; str <= Node; str++) { // 시작점 str에 대해 반복
+                for(int ed = 1; ed <= Node; ed++) {  // 도착점 ed에 대해 반복
+                    if(map[str][mid] != INF && map[mid][ed] != INF) {  // str->mid와 mid->ed 경로가 존재한다면
+                        if(map[str][ed] > map[str][mid] + map[mid][ed]) {  // 경유하는 경로가 더 짧다면
+                            map[str][ed] = map[str][mid] + map[mid][ed];   // 거리를 경유 경로로 업데이트
+                            next[str][ed] = next[str][mid];                // 경로를 str->mid의 다음 노드로 설정
+                        }
+                    }
+                }
+            }
+        }
+        
+        // 최단거리 출력
+        for(int i = 1; i <= Node; i++) {           // 각 시작 노드에 대해 반복
+            for(int j = 1; j <= Node; j++) {       // 각 도착 노드에 대해 반복
+                if(map[i][j] == INF) {             // 경로가 존재하지 않는다면
+                    System.out.print("0 ");       // 0을 출력
+                } else {                           // 경로가 존재한다면
+                    System.out.print(map[i][j] + " ");  // 최단거리를 출력
+                }
+            }
+            System.out.println();                 // 한 행이 끝나면 줄바꿈
+        }
+        
+        // 경로 출력
+        for(int i = 1; i <= Node; i++) {           // 각 시작 노드에 대해 반복
+            for(int j = 1; j <= Node; j++) {       // 각 도착 노드에 대해 반복
+                if(i == j || map[i][j] == INF) {   // 자기 자신이거나 경로가 없다면
+                    System.out.println("0");      // 0을 출력
+                } else {                           // 경로가 존재한다면
+                    ArrayList<Integer> path = getPath(i, j);  // i에서 j로의 경로를 구하기
+                    System.out.print(path.size() + " ");     // 경로의 노드 개수 출력
+                    for(int vertex : path) {                  // 경로의 각 노드에 대해 반복
+                        System.out.print(vertex + " ");      // 노드 번호 출력
+                    }
+                    System.out.println();                    // 줄바꿈
+                }
+            }
+        }
+    }
+    
+    // 경로 복원 함수
+    static ArrayList<Integer> getPath(int start, int end) {  // start에서 end로의 경로를 구하는 함수
+        ArrayList<Integer> path = new ArrayList<>();         // 경로를 저장할 리스트 생성
+        
+        if(next[start][end] == -1) {             // 경로가 존재하지 않는다면
+            return path;                         // 빈 리스트 반환
+        }
+        
+        int current = start;                     // 현재 위치를 start로 설정
+        path.add(current);                       // 경로에 현재 위치 추가
+        
+        while(current != end) {                  // 목적지에 도달할 때까지 반복
+            current = next[current][end];        // 다음 노드로 이동
+            path.add(current);                   // 경로에 현재 위치 추가
+        }
+        
+        return path;                             // 완성된 경로 반환
+    }
+}

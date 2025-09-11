@@ -1,5 +1,3 @@
-//*BOJ_2578_빙고 */
-
 package BOJ_2500;
 
 import java.io.*;
@@ -18,6 +16,8 @@ public class BOJ_2578 {
 
         map = new int[5][5];
         int answer = 0;
+        
+        // 빙고판 입력
         for(int i = 0; i < 5; i++) {
             st = new StringTokenizer(br.readLine());
             for(int j = 0; j < 5; j++) {
@@ -25,7 +25,7 @@ public class BOJ_2578 {
             }
         }
 
-        //*사회자 */
+        // 사회자가 부르는 번호들 입력
         for(int i = 0; i < 5; i++) {
             st = new StringTokenizer(br.readLine());
             for(int j = 0; j < 5; j++) {
@@ -34,80 +34,83 @@ public class BOJ_2578 {
             }
         }
 
-        //*숫자 체커 */
+        // 숫자를 하나씩 처리
         while(!q.isEmpty()) {
             int num = q.poll();
             answer++;
-        
-
-            for(int i = 0; i < 5; i++) {
-                for(int j = 0; j < 5; j++) {
+            
+            // 해당 숫자를 찾아서 0으로 바꿈
+            boolean found = false;
+            for(int i = 0; i < 5 && !found; i++) {
+                for(int j = 0; j < 5 && !found; j++) {
                     if(map[i][j] == num) {
                         map[i][j] = 0;
-                    }
-                    BingoChecker();
-                    if(BingoCounter >= 3) {
-                        System.out.println(answer);
+                        found = true;
                     }
                 }
             }
+            
+            // 빙고 개수 체크
+            BingoChecker();
+            
+            // 3개 이상의 빙고가 완성되면 종료
+            if(BingoCounter >= 3) {
+                System.out.println(answer);
+                return;
+            }
         }
     }
-    //*빙고 체커 */
-    public static void BingoChecker() {
     
+    // 빙고 체커
+    public static void BingoChecker() {
         BingoCounter = 0;
 
-    //*세로 체커 */
-    for(int j = 0; j < 5; j++) {
-        int count = 0;// 열별로
-        for(int i = 0; i < 5; i++) { // 행을 확인
-            if(map[i][j] == 0) {
-                count++;
+        // 가로 체커
+        for(int i = 0; i < 5; i++) {
+            int count = 0;
+            for(int j = 0; j < 5; j++) {
+                if(map[i][j] == 0) {
+                    count++;
+                }
+            }
+            if(count == 5) {
+                BingoCounter++;
             }
         }
-        if(count == 5) {
-            BingoCounter++;
-        }
-    }
-    
-    //*가로 체커 */
-
-    for(int i = 0; i < 5; i++) {
-        int count = 0;
+        
+        // 세로 체커
         for(int j = 0; j < 5; j++) {
-            if(map[i][j] == 0) {
-                count++;
+            int count = 0;
+            for(int i = 0; i < 5; i++) {
+                if(map[i][j] == 0) {
+                    count++;
+                }
+            }
+            if(count == 5) {
+                BingoCounter++;
             }
         }
-        if(count == 5) {
+
+        // 좌상-우하 대각선 체커
+        int count1 = 0;
+        for(int i = 0; i < 5; i++) {
+            if(map[i][i] == 0) {
+                count1++;
+            }
+        }
+        if(count1 == 5) {
             BingoCounter++;
         }
-    }
 
-    //*좌상 우하 체커 */
-    int count = 0;
-    for(int i = 0; i < 5; i++) {
-        if(map[i][i] == 0) {
-            count++;
+        // 우상-좌하 대각선 체커
+        int count2 = 0;
+        for(int i = 0; i < 5; i++) {
+            if(map[i][4 - i] == 0) {
+                count2++;
+            }
         }
-        if(count == 5) {
+        if(count2 == 5) {
             BingoCounter++;
         }
-    }
-
-
-    //*우상 좌하 체커 */
-    int count = 0;
-    for(int i = 0; i < 5; i++) {
-        if(map[i][4 - i] == 0) {
-            count++;
-        }
-        if(count == 5) {
-            BingoCounter++;
-        }
-    }
-
     }
 }
-
