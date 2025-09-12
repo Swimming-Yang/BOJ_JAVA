@@ -6,88 +6,89 @@ import java.io.*;
 import java.util.*;
 
 public class BOJ_1753 {
-    public static ArrayList<Edge>[] graph;
-    public static int[] distance;
+    
+    public static ArrayList<Node>[] graph;
+    public static int[] dist;
 
-    public static int INF = Integer.MAX_VALUE;
+    public static int INF = 100_000_000;
 
-    public static class Edge implements Comparable<Edge> {
+    public static class Node implements Comparable<Node> {
         int end;
         int weight;
 
-        public Edge(int end, int weight) {
+        Node(int end, int weight) {
             this.end = end;
             this.weight = weight;
         }
 
         @Override
-        public int compareTo(Edge o) {
+        public int compareTo(Node o) {
             return Integer.compare(this.weight, o.weight);
         }
-    }
 
+        
+    }
+ 
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
 
-        //^정점의 개수, 간선의 개수
         st = new StringTokenizer(br.readLine());
-        int V = Integer.parseInt(st.nextToken());
-        int E = Integer.parseInt(st.nextToken());
+        int Node = Integer.parseInt(st.nextToken());
+        int Edge = Integer.parseInt(st.nextToken());
+        int str_Node = Integer.parseInt(br.readLine());
 
-        graph = new ArrayList[V + 1];
-        for(int i = 0; i <= V; i++) {
+        graph = new ArrayList[Node + 1];
+        for(int i = 0; i <= Node; i++) {
             graph[i] = new ArrayList<>();
         }
+        dist = new int[Node + 1];
+        Arrays.fill(dist, INF);
 
-        distance = new int[V + 1];
-        Arrays.fill(distance, INF);
-
-        //^시작노드
-        int K = Integer.parseInt(br.readLine());
-
-        //^ E줄에 걸쳐 시작, 도착, 가중치
-        for(int i = 0; i < E; i++) {
+        for(int i = 0; i < Edge; i++) {
             st = new StringTokenizer(br.readLine());
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
             int weight = Integer.parseInt(st.nextToken());
 
-            graph[start].add(new Edge(end, weight));
+            graph[start].add(new Node(end, weight));
         }
 
-        Dijkstra(K);
+        dijk(str_Node);
+
+        for(int i = 1; i <= Node; i++) {
+            if(dist[i] == INF) System.out.println("INF");
+            else System.out.println(dist[i]);
+        }
     }
 
-    public static void Dijkstra(int start_node) {
+    public static void dijk(int start_Node) {
 
-        PriorityQueue<Edge> pq = new PriorityQueue<>();
+        PriorityQueue<Node> pq = new PriorityQueue<>();
 
-        distance[start_node] = 0;
-        pq.offer(new Edge(start_node, 0));
+        //*시작자기자신까지의 거리는 0 */
+        dist[start_Node] = 0;
+        pq.offer(new Node(start_Node, 0));
 
         while(!pq.isEmpty()) {
-            Edge current = pq.poll();
-            int cur_node = current.end;
-            int cur_weight = current.weight;
+            Node cur = pq.poll();
+            int cur_Node = cur.end;
+            int cur_dist = cur.weight;
 
-            if(distance[cur_node] < cur_weight) continue;
+            if(cur_dist > dist[cur_Node]) continue;
+            
+            for(Node next : graph[cur_Node]) {
+                int next_Node = next.end;
+                int next_dist = next.weight;
 
-            for(Edge next : graph[cur_node]) {
-                int next_node = next.end;
-                int next_weight = next.weight;
+                int new_dist = dist[cur_Node] + next_dist;
 
-                int new_dist = distance[cur_node] + next_weight;
-                
-                if(new_dist < distance[next_node]) {
-                    distance[next_node] = new_dist;
-                    pq.offer(new Edge(next_node, new_dist));
+                if(new_dist < dist[next_Node]) {
+                    dist[next_Node] = new_dist;
+                    pq.offer(new Node(next_Node, new_dist));
                 }
             }
         }
-        for(int i = 1; i < distance.length; i++) {
-            System.out.println(distance[i] == INF ? "INF" : distance[i]);
-        }
+        
     }
-
 }
