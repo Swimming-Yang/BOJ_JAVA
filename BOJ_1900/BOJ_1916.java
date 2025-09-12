@@ -11,81 +11,80 @@ public class BOJ_1916 {
     public static StringTokenizer st;
 
     public static ArrayList<Node>[] graph;
-    public static int distance[];
-    public static final int INF = Integer.MAX_VALUE;
-    
-    // 커스텀 Node 클래스 정의
-    static class Node implements Comparable<Node> {
-        int vertex;
-        int weight;
-        
-        public Node(int vertex, int weight) {
-            this.vertex = vertex;
-            this.weight = weight;
+    public static int[] dist;
+
+    public static int INF = 100_000_000;
+
+    public static class Node implements Comparable<Node> {
+        int end;
+        int dist;
+
+        Node(int end, int dist) {
+            this.end = end;
+            this.dist = dist;
         }
-        
+
         @Override
-        public int compareTo(Node other) {
-            return Integer.compare(this.weight, other.weight);
+        public int compareTo(Node o) {
+            return Integer.compare(this.dist, o.dist);
         }
     }
-    
-    public static void main(String[] args) throws IOException{
-        int V = Integer.parseInt(br.readLine());
-        int E = Integer.parseInt(br.readLine());
 
-        // 초기화
-        graph = new ArrayList[V + 1];
-        for(int i = 1; i <= V; i++) {
+    public static void main(String[] args) throws IOException{
+        int Node = Integer.parseInt(br.readLine());
+        int Edge = Integer.parseInt(br.readLine());
+
+        graph = new ArrayList[Node + 1];
+        for(int i = 0; i <= Node ; i++) {
             graph[i] = new ArrayList<>();
         }
-        distance = new int[V + 1];
-        Arrays.fill(distance, INF);
+        dist = new int[Node + 1];
+        Arrays.fill(dist, INF);
 
-        // 간선 정보 입력
-        for(int i = 0; i < E; i++) {
+        for(int i = 0; i < Edge; i++) {
             st = new StringTokenizer(br.readLine());
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
-            int weight = Integer.parseInt(st.nextToken());
+            int dist = Integer.parseInt(st.nextToken());
 
-            graph[start].add(new Node(end, weight));
+            graph[start].add(new Node(end, dist));
         }
-
-        // 시작점과 끝점 입력
         st = new StringTokenizer(br.readLine());
-        int start_node = Integer.parseInt(st.nextToken());
-        int end_node = Integer.parseInt(st.nextToken());
+        int start_city = Integer.parseInt(st.nextToken());
+        int end_city = Integer.parseInt(st.nextToken());
 
-        dijkstra(start_node);
+        dijk(start_city);
 
-        System.out.println(distance[end_node]);
+        if(dist[end_city] == INF) return;
+        else System.out.println(dist[end_city]);
     }
 
-    public static void dijkstra(int start) {
+    public static void dijk(int start) {
+
+        dist[start] = 0;
         PriorityQueue<Node> pq = new PriorityQueue<>();
-        distance[start] = 0;
+
         pq.offer(new Node(start, 0));
 
         while(!pq.isEmpty()) {
             Node current = pq.poll();
-            int cur_vertex = current.vertex;
-            int cur_weight = current.weight;
+            int cur_Node = current.end;
+            int cur_dist = current.dist;
 
+            if(dist[cur_Node] < cur_dist) continue;
+            else {
+                for(Node next : graph[cur_Node]) {
+                    int next_Node = next.end;
+                    int next_dist = next.dist;
 
-            if(cur_weight > distance[cur_vertex]) continue;
+                    int new_dist = dist[cur_Node] + next_dist;
+                    if(new_dist < dist[next_Node]) {
+                        dist[next_Node] = new_dist;
+                        pq.offer(new Node(next_Node, new_dist));
+                    }
 
-            // 인접한 노드들 확인
-            for(Node next : graph[cur_vertex]) {
-                int next_vertex = next.vertex;
-                int next_weight = distance[cur_vertex] + next.weight;
-                
-                // 더 짧은 경로 발견시 업데이트
-                if(next_weight < distance[next_vertex]) {
-                    distance[next_vertex] = next_weight;
-                    pq.offer(new Node(next_vertex, next_weight));
                 }
             }
-        }
+        }    
     }
 }
