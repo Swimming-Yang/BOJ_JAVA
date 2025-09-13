@@ -6,29 +6,25 @@ import java.io.*;
 import java.util.*;
 
 public class BOJ_1753 {
-    
-    public static ArrayList<Node>[] graph;
-    public static int[] dist;
 
+    public static ArrayList<Edge>[] graph;
+    public static int[] dist;
     public static int INF = 100_000_000;
 
-    public static class Node implements Comparable<Node> {
+    public static class Edge implements Comparable<Edge> {
         int end;
         int weight;
 
-        Node(int end, int weight) {
+        public Edge(int end, int weight) {
             this.end = end;
             this.weight = weight;
         }
 
         @Override
-        public int compareTo(Node o) {
+        public int compareTo(Edge o) {
             return Integer.compare(this.weight, o.weight);
         }
-
-        
     }
- 
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
@@ -36,14 +32,16 @@ public class BOJ_1753 {
         st = new StringTokenizer(br.readLine());
         int Node = Integer.parseInt(st.nextToken());
         int Edge = Integer.parseInt(st.nextToken());
-        int str_Node = Integer.parseInt(br.readLine());
 
         graph = new ArrayList[Node + 1];
         for(int i = 0; i <= Node; i++) {
             graph[i] = new ArrayList<>();
         }
+
         dist = new int[Node + 1];
         Arrays.fill(dist, INF);
+
+        int start_Node = Integer.parseInt(br.readLine());
 
         for(int i = 0; i < Edge; i++) {
             st = new StringTokenizer(br.readLine());
@@ -51,44 +49,44 @@ public class BOJ_1753 {
             int end = Integer.parseInt(st.nextToken());
             int weight = Integer.parseInt(st.nextToken());
 
-            graph[start].add(new Node(end, weight));
+            graph[start].add(new Edge(end, weight));
         }
 
-        dijk(str_Node);
+        dijk(start_Node);
 
         for(int i = 1; i <= Node; i++) {
-            if(dist[i] == INF) System.out.println("INF");
-            else System.out.println(dist[i]);
+            if(dist[i] == INF) {
+                System.out.println("INF");
+            }
+            else {
+            System.out.println(dist[i]);
+            }
         }
     }
 
     public static void dijk(int start_Node) {
-
-        PriorityQueue<Node> pq = new PriorityQueue<>();
-
-        //*시작자기자신까지의 거리는 0 */
         dist[start_Node] = 0;
-        pq.offer(new Node(start_Node, 0));
+
+        PriorityQueue<Edge> pq = new PriorityQueue<>();
+        pq.offer(new Edge(start_Node, 0));
 
         while(!pq.isEmpty()) {
-            Node cur = pq.poll();
-            int cur_Node = cur.end;
-            int cur_dist = cur.weight;
+            Edge current = pq.poll();
+            int current_Node = current.end;
+            int current_weight = current.weight;
 
-            if(cur_dist > dist[cur_Node]) continue;
-            
-            for(Node next : graph[cur_Node]) {
+            if(dist[current_Node] < current_weight) continue;
+
+            for(Edge next : graph[current_Node]) {
                 int next_Node = next.end;
-                int next_dist = next.weight;
+                int next_Weight = dist[current_Node] + next.weight;
 
-                int new_dist = dist[cur_Node] + next_dist;
+                if(dist[next_Node] > next_Weight) {
+                    dist[next_Node] = next_Weight;
 
-                if(new_dist < dist[next_Node]) {
-                    dist[next_Node] = new_dist;
-                    pq.offer(new Node(next_Node, new_dist));
+                    pq.offer(new Edge(next_Node, next_Weight));
                 }
             }
         }
-        
     }
 }
