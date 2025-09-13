@@ -37,7 +37,7 @@ public class BOJ_4485 {
 
     
         while(true) {
-            int size = Integer.parseInt(br.readLine());
+            size = Integer.parseInt(br.readLine());
             if(size == 0) {
                 break;
             }
