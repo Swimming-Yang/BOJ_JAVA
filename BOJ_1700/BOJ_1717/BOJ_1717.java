@@ -1,6 +1,6 @@
 //BOJ_1717_집합의 표현
 
-package BOJ_1700;
+package BOJ_1700.BOJ_1717;
 
 import java.io.*;
 import java.util.*;
