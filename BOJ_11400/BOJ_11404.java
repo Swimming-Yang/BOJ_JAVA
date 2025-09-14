@@ -33,6 +33,7 @@ public class BOJ_11404 {
             int end = Integer.parseInt(st.nextToken());
             int weight = Integer.parseInt(st.nextToken());
             
+            //*까먹음 */
             map[start][end] = Math.min(map[start][end], weight);
         }
 
