@@ -4,50 +4,35 @@ import java.io.*;
 import java.util.*;
 
 public class BOJ_12865 {
-    static int N;        // 물품의 개수
-    static int limit;    // 배낭의 무게 제한
-    static int[] weight; // 각 물품의 무게
-    static int[] value;  // 각 물품의 가치
-    static int[][] dp;   // DP 테이블
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        
-        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        N = Integer.parseInt(st.nextToken());          // 물품 개수 저장
-        limit = Integer.parseInt(st.nextToken());      // 무게 제한 저장
+        StringTokenizer st;
+        st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
 
-        // 배열 초기화 (1부터 N까지 사용하기 위해 크기 N+1)
-        weight = new int[N+1];  // 무게 배열
-        value = new int[N+1];   // 가치 배열
-
-        for(int i = 1; i < N+1; i++) {
-            st = new StringTokenizer(br.readLine(), " ");
-            int W = Integer.parseInt(st.nextToken());  // 무게 읽기
-            int V = Integer.parseInt(st.nextToken());  // 가치 읽기
-            weight[i] = W;  // i번째 물품의 무게 저장
-            value[i] = V;   // i번째 물품의 가치 저장
+        int[][] items = new int[N + 1][2]; // 물품 정보를 저장할 2차원 배열 (무게, 가치)
+        for(int i = 1; i <= N; i++) { // 1번부터 N번까지 물품 정보 입력받기
+            st = new StringTokenizer(br.readLine()); // 각 물품의 정보를 담은 줄 읽기
+            items[i][0] = Integer.parseInt(st.nextToken()); // i번째 물품의 무게 저장
+            items[i][1] = Integer.parseInt(st.nextToken()); // i번째 물품의 가치 저장
         }
 
-        // DP 테이블 초기화 (물품 개수 × 무게 제한)
-        dp = new int[N+1][limit+1];
+        int[][] dp = new int[N + 1][K + 1]; // DP 테이블: dp[i][j] = i번째까지 물품을 고려했을 때 무게 j 이하로 얻을 수 있는 최대 가치
 
-        // DP 테이블 채우기 (물품 1번부터 N번까지)
-        for(int i = 1; i < N + 1; i++) {
-            // 무게 제한 1부터 limit까지
-            for(int j = 1; j < limit + 1; j++) {
-                // 이전 물품까지의 최적해를 일단 가져옴
-                dp[i][j] = dp[i-1][j];
-                
-                // i번째 물품을 넣을 수 있다면 (무게가 허용 범위 내)
-                if(weight[i] <= j) {
-                    // 현재 최적해 vs (i번째 물품을 넣었을 때의 가치) 중 최대값
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - weight[i]] + value[i]);
+        for(int i = 1; i <= N; i++) { // 1번째부터 N번째까지 물품을 차례로 고려
+            for(int j = 1; j <= K; j++) { // 무게 1부터 K까지 모든 경우를 고려
+                if(items[i][0] > j) { // 현재 물품의 무게가 현재 고려하는 무게 한도를 초과하는 경우
+                    dp[i][j] = dp[i - 1][j]; // 현재 물품을 포함할 수 없으므로 이전 물품까지의 최대 가치를 그대로 가져옴
+                } else { // 현재 물품을 포함할 수 있는 경우
+                    dp[i][j] = Math.max( // 두 경우 중 최대값을 선택
+                        dp[i - 1][j], // 현재 물품을 포함하지 않는 경우의 최대 가치
+                        dp[i - 1][j - items[i][0]] + items[i][1] // 현재 물품을 포함하는 경우의 최대 가치
+                    );
                 }
             }
         }
-
-        // 최종 답 출력 (N개 물품, 무게 제한 limit일 때의 최대 가치)
-        System.out.println(dp[N][limit]);
+        
+        System.out.println(dp[N][K]); // 모든 물품을 고려했을 때 무게 K 이하로 얻을 수 있는 최대 가치 출력
     }
 }

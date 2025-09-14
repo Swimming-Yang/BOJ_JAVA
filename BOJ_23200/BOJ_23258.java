@@ -52,6 +52,7 @@ public class BOJ_23258 {
             int e = Integer.parseInt(st.nextToken());  // 도착
             
             int idx = C - 1;
+            
             if(map[s][e][idx] == INF) {
                 sb.append(-1).append('\n');
                 // System.out.println(-1);

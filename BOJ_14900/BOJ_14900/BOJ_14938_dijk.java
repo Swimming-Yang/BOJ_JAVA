@@ -55,7 +55,7 @@ public class BOJ_14938_dijk {
         }
         
         // 간선 정보 입력 (양방향)
-        for(int i = 0; i < Edge; i++) {  // <= 에서 < 로 수정
+        for(int i = 0; i < Edge; i++) {
             st = new StringTokenizer(br.readLine());
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
@@ -69,7 +69,7 @@ public class BOJ_14938_dijk {
         // 각 노드에서 시작하는 다익스트라 실행
         for(int i = 1; i <= Node; i++) {
             int result = dijk(i);
-            if (result > max_value) max_value = result;  // >= 에서 > 로 변경 (약간의 최적화)
+            if (result > max_value) max_value = result;
         }
         
         System.out.println(max_value);
@@ -101,13 +101,13 @@ public class BOJ_14938_dijk {
                 
                 if(dist[next_end] > next_weight) {
                     dist[next_end] = next_weight;
-                    pq.offer(new Edge(next_end, next_weight));  // 여기도 수정
+                    pq.offer(new Edge(next_end, next_weight));
                 }
             }
         }
         
         // 수색범위 내의 모든 아이템 합산
-        for(int i = 1; i <= Node; i++) {  // dist.length 대신 Node 사용
+        for(int i = 1; i <= Node; i++) {
             if(dist[i] <= range) {
                 cur_value += weight[i];
             }
