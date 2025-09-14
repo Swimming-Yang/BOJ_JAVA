@@ -6,10 +6,10 @@ import java.io.*;
 import java.util.*;
 
 public class BOJ_1753 {
-    public static ArrayList<Edge>[] graph;
-    public static int[] distance;
 
-    public static int INF = Integer.MAX_VALUE;
+    public static ArrayList<Edge>[] graph;
+    public static int[] dist;
+    public static int INF = 100_000_000;
 
     public static class Edge implements Comparable<Edge> {
         int end;
@@ -25,29 +25,25 @@ public class BOJ_1753 {
             return Integer.compare(this.weight, o.weight);
         }
     }
-
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
 
-        //^정점의 개수, 간선의 개수
         st = new StringTokenizer(br.readLine());
-        int V = Integer.parseInt(st.nextToken());
-        int E = Integer.parseInt(st.nextToken());
+        int Node = Integer.parseInt(st.nextToken());
+        int Edge = Integer.parseInt(st.nextToken());
 
-        graph = new ArrayList[V + 1];
-        for(int i = 0; i <= V; i++) {
+        graph = new ArrayList[Node + 1];
+        for(int i = 0; i <= Node; i++) {
             graph[i] = new ArrayList<>();
         }
 
-        distance = new int[V + 1];
-        Arrays.fill(distance, INF);
+        dist = new int[Node + 1];
+        Arrays.fill(dist, INF);
 
-        //^시작노드
-        int K = Integer.parseInt(br.readLine());
+        int start_Node = Integer.parseInt(br.readLine());
 
-        //^ E줄에 걸쳐 시작, 도착, 가중치
-        for(int i = 0; i < E; i++) {
+        for(int i = 0; i < Edge; i++) {
             st = new StringTokenizer(br.readLine());
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
@@ -56,38 +52,41 @@ public class BOJ_1753 {
             graph[start].add(new Edge(end, weight));
         }
 
-        Dijkstra(K);
+        dijk(start_Node);
+
+        for(int i = 1; i <= Node; i++) {
+            if(dist[i] == INF) {
+                System.out.println("INF");
+            }
+            else {
+            System.out.println(dist[i]);
+            }
+        }
     }
 
-    public static void Dijkstra(int start_node) {
+    public static void dijk(int start_Node) {
+        dist[start_Node] = 0;
 
         PriorityQueue<Edge> pq = new PriorityQueue<>();
-
-        distance[start_node] = 0;
-        pq.offer(new Edge(start_node, 0));
+        pq.offer(new Edge(start_Node, 0));
 
         while(!pq.isEmpty()) {
             Edge current = pq.poll();
-            int cur_node = current.end;
-            int cur_weight = current.weight;
+            int current_Node = current.end;
+            int current_weight = current.weight;
 
-            if(distance[cur_node] < cur_weight) continue;
+            if(dist[current_Node] < current_weight) continue;
 
-            for(Edge next : graph[cur_node]) {
-                int next_node = next.end;
-                int next_weight = next.weight;
+            for(Edge next : graph[current_Node]) {
+                int next_Node = next.end;
+                int next_Weight = dist[current_Node] + next.weight;
 
-                int new_dist = distance[cur_node] + next_weight;
-                
-                if(new_dist < distance[next_node]) {
-                    distance[next_node] = new_dist;
-                    pq.offer(new Edge(next_node, new_dist));
+                if(dist[next_Node] > next_Weight) {
+                    dist[next_Node] = next_Weight;
+
+                    pq.offer(new Edge(next_Node, next_Weight));
                 }
             }
         }
-        for(int i = 1; i < distance.length; i++) {
-            System.out.println(distance[i] == INF ? "INF" : distance[i]);
-        }
     }
-
 }

@@ -6,86 +6,82 @@ import java.io.*;
 import java.util.*;
 
 public class BOJ_1197_2 {
-    
-    public static ArrayList<Edge>[] graph;
+
+    public static ArrayList<Node>[] graph;
     public static boolean[] visited;
+    public static int Node;
 
-    public static int V;
-
-    public static class Edge implements Comparable<Edge> {
+    public static class Node implements Comparable<Node> {
         int end;
-        int weight;
+        int dist;
 
-        public Edge(int end, int weight) {
+        public Node(int end, int dist) {
             this.end = end;
-            this.weight = weight;
+            this.dist = dist;
         }
 
         @Override
-        public int compareTo(Edge o) {
-            return Integer.compare(this.weight, o.weight);
+        public int compareTo(Node o) {
+            return Integer.compare(this.dist, o.dist);
         }
     }
+    
+
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        V = Integer.parseInt(st.nextToken());
-        int E = Integer.parseInt(st.nextToken());
+        Node = Integer.parseInt(br.readLine());
+        int Edge = Integer.parseInt(br.readLine());
 
-        graph = new ArrayList[V + 1];
-        for(int i = 0; i <= V; i++) {
+        graph = new ArrayList[Node + 1];
+        for(int i = 0; i <= Node; i++) {
             graph[i] = new ArrayList<>();
         }
-        visited = new boolean[V + 1];
 
-
-        for(int i = 0; i < E; i++) {
+        for(int i = 0; i < Edge; i++) {
             st = new StringTokenizer(br.readLine());
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
-            int weight = Integer.parseInt(st.nextToken());
+            int dist = Integer.parseInt(st.nextToken());
 
-            graph[start].add(new Edge(end, weight));
-            graph[end].add(new Edge(start, weight));
+            graph[start].add(new Node(end, dist));
+            graph[end].add(new Node(start, dist));
         }
 
         int result = prim(1);
         System.out.println(result);
-
     }
 
     public static int prim(int start) {
+        visited = new boolean[Node + 1];
+
+        PriorityQueue<Node> pq = new PriorityQueue<>();
+
+        int mstCost = 0;
+        int edge_count = 0;
 
         visited[start] = true;
 
-        PriorityQueue<Edge> pq = new PriorityQueue<>();
-        for(Edge edge : graph[start]) {
-            pq.offer(edge);
-        }
-
-        int mst_cost = 0;
-        int edge_count = 0;
-
         while(!pq.isEmpty()) {
-            Edge current = pq.poll();
-
-            if(visited[current.end]) continue;
-
-            visited[current.end] = true;
-            mst_cost += current.weight;
-            edge_count+= 1;
-
-            if(edge_count == V - 1) {
-                break;
+            Node current = pq.poll();
+            
+            if(visited[current.end]) {
+                continue;
             }
 
-            for(Edge edge : graph[current.end]) {
-                if(!visited[edge.end]) {//방문하지 않았다면
-                pq.offer(edge);
+            visited[current.end] = true;
+            mstCost += current.dist;
+            edge_count += 1;
+
+            if(edge_count == Node - 1) break;
+
+            for(Node node : graph[current.end]) {
+                if(!visited[node.end]) {
+                    pq.offer(node);
                 }
             }
         }
-        return mst_cost;
+        return mstCost;
     }
 }

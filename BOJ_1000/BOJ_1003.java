@@ -7,26 +7,29 @@ import java.io.*;
 
 public class BOJ_1003 {
 
-    public static int[][] fibo = new int[41][2];
+    public static int[][] dp;
 
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        fibo[0][0] = 1;
-        fibo[0][1] = 0;
-        fibo[1][0] = 0;
-        fibo[1][1] = 1;
-        int testcase_num = Integer.parseInt(br.readLine());
-        for(int i = 0; i < testcase_num; i++) {
-            int target_num = Integer.parseInt(br.readLine());
-            for(int j = 2; j <= target_num; j++) {
-                fibo[j][0] = fibo[j - 1][0] + fibo[j - 2][0];
-                fibo[j][1] = fibo[j - 1][1] + fibo[j - 2][1];
-            }
+        int target = Integer.parseInt(br.readLine());
+        dp = new int[41][2];
 
-            System.out.println(fibo[target_num][0] + " " + fibo[target_num][1]);
+        dp[0][0] = 1;
+        dp[0][1] = 0;
+        dp[1][0] = 0;
+        dp[1][1] = 1;
 
+        for(int i = 2; i <= target; i++) {
+            dp[i][0] = dp[i - 1][0] + dp[i - 2][0];
+            dp[i][1] = dp[i - 1][1] + dp[i - 2][1];
+        }
+
+        System.out.println(dp[target][0] + " " + dp[target][1]);
+
+        
     }
-    }
+
+    
 }
 
 
