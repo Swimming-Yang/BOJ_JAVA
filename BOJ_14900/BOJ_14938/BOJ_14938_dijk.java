@@ -1,5 +1,5 @@
 //&BOJ_14938 서강 그라운드
-package BOJ_14900.BOJ_14900;
+package BOJ_14900.BOJ_14938;
 
 import java.io.*;
 import java.util.*;
