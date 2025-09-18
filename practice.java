@@ -45,7 +45,7 @@ public class practice {
         for(int i = 1; i <= Node; i++) {
             for(int j = 1; j <= Node; j++) {
                 if(map[i][j] == INF) {
-                    sb.append("INF" + " ");
+                    sb.append("0" + " ");
                 }
                 else {
                     sb.append(map[i][j] + " ");
@@ -54,6 +54,7 @@ public class practice {
             sb.append("\n");
         }
         System.out.println(sb);
+        br.close();
     }
 }
 
