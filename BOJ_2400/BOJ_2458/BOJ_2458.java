@@ -1,6 +1,6 @@
 //&BOJ_2458_키순서
 
-package BOJ_2400;
+package BOJ_2400.BOJ_2458;
 
 import java.io.*;
 import java.util.*;
