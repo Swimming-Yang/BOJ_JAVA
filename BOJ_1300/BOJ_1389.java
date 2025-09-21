@@ -1,5 +1,3 @@
-package BOJ_1300;
-
 import java.io.*;
 import java.util.*;
 
