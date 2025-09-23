@@ -105,7 +105,7 @@ public class BOJ_11559 {
             }
         }
         
-        // 4개 이상 연결되면 터뜨리기
+        // 4개 이상 연결되면 2222터뜨리기
         if(count >= 4) {
             for(int k = 0; k < cur.size(); k++) {
                 locate cur_location = cur.get(k);
