@@ -12,7 +12,7 @@ public class BOJ_11404 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
 
-        //*도시(노드)의 개수 */
+        //*도시(노드)의 개33333수 */
         int Node = Integer.parseInt(br.readLine());
         map = new int[Node + 1][Node + 1];
 

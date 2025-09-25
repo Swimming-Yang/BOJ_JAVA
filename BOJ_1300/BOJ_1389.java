@@ -1,5 +1,3 @@
-package BOJ_1300;
-
 import java.io.*;
 import java.util.*;
 
@@ -67,10 +65,10 @@ public class BOJ_1389 {
         
         for(int i = 1; i <= Node; i++) {
             int sum = 0;
-            for(int j = 1; j < Node; j++) {
+            for(int j = 1; j <= Node; j++) {
                 sum += map[i][j];
             }
-            if(sum <= answer) {
+            if(sum < answer) {
                 answer = sum;
                 result = i;
             }
