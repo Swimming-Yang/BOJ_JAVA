@@ -17,7 +17,7 @@ public class BOJ_1806 {
         for(int i = 0; i < N; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
-        
+        //선언
         int start = 0;
         int end = 0;
         int minLen = Integer.MAX_VALUE;
